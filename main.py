@@ -31,7 +31,8 @@ class App(customtkinter.CTk):
             ("Insert Data", self.display_insert_data),
             ("Edit Data", self.display_edit_data),
             ("Delete Data", self.display_delete_data),
-            ("Search", self.display_search_data)
+            ("Search", self.display_search_data),
+            ("Data Transaksi", self.display_transaction)
         ]
         
         for (text, command) in buttons:
@@ -60,7 +61,6 @@ class App(customtkinter.CTk):
                                 rowheight=25, 
                                 fieldbackground="white")
                 style.configure("Treeview.Heading", font=('Arial', 12, 'bold'))
-                
                 view = ttk.Treeview(self.content, columns=("IDProduct", "IDKategori", "nama_produk", "harga", "deskripsi", "quantity"), show="headings")
                 view.heading("IDProduct", text="IDProduct")
                 view.heading("IDKategori", text="IDKategori")
@@ -124,7 +124,6 @@ class App(customtkinter.CTk):
         label = customtkinter.CTkLabel(self.content, text="Edit Product Data", font=("Arial", 24))
         label.pack(pady=20)
 
-        # Form fields
         fields = ["ID Product", "ID Kategori", "Nama Produk", "Harga", "Deskripsi", "Image URL", "Quantity"]
         entries = {}
 
@@ -162,6 +161,11 @@ class App(customtkinter.CTk):
         self.clear_content()
         label = customtkinter.CTkLabel(self.content, text="Search Product Data", font=("Arial", 24))
         label.pack(pady=20)
+    
+    def display_transaction(self):
+        self.clear_content()
+        label = customtkinter.CTkLabel(self.content, text="Data Transaksi", font=("Arial", 24))
+        label.pack(pady = 20)
 
 if __name__ == "__main__":
     app = App()

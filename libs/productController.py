@@ -23,8 +23,6 @@ def addProduct(idkategori, nama, harga, desc, img, q):
     except mysql.connector.Error as err:
         print(f"Error: {err}")
         myDB.rollback()
-        
-
 
 def deleteProduct(id):
     try:
