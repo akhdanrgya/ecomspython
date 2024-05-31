@@ -77,6 +77,16 @@ def showAllProduct():
     except Exception as err:
         print(f"Error data product err : {err}")
 
+def showAllProductSorted():
+    try:
+        query = "SELECT * FROM product ORDER BY nama_produk"
+        cursor = myDB.cursor(dictionary=True)
+        cursor.execute(query)
+        products = cursor.fetchall()
+        return products
+    except Exception as err:
+        print(f"Error fetching data products: {err}")
+
 def showProductById(id):
     try:
         query = f"""
@@ -108,3 +118,31 @@ def kurangQuantity(id, newQ):
         
     finally:
         cursor.close()
+
+def binarySearch(arr, target, key):
+    low = 0
+    high = len(arr) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+        midVal = arr[mid][key]
+
+        if midVal < target:
+            low = mid + 1
+        elif midVal > target:
+            high = mid - 1
+        else:
+            return arr[mid]
+    
+    return None
+
+def searchProduct(nama_produk):
+    products = showAllProduct()
+    result = binarySearch(products, nama_produk, 'nama_produk')
+    
+    if result:
+        print("Product found:", result)
+        return result
+    else:
+        print("Product not found.")
+        return None
