@@ -24,8 +24,7 @@ def addProduct(idkategori, nama, harga, desc, img, q):
         print(f"Error: {err}")
         myDB.rollback()
         
-    finally:
-        cursor.close()
+
 
 def deleteProduct(id):
     try:
@@ -42,8 +41,7 @@ def deleteProduct(id):
         print(f"Error deleting product: {err}")
         myDB.rollback()
         
-    finally:
-        cursor.close()
+
 
 def updateProduct(idp, IDkategori, nama, harga, desk, img, q):
     try:
@@ -60,8 +58,7 @@ def updateProduct(idp, IDkategori, nama, harga, desk, img, q):
         print(f"Error updating Product where id : {idp} err : {err}")
         myDB.rollback()
     
-    finally:
-        cursor.close()
+
 
 def showAllProduct():
     try:
