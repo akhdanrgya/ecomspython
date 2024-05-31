@@ -45,19 +45,19 @@ def deleteProduct(id):
     finally:
         cursor.close()
 
-def updateProduct(id, IDkategori, nama, harga, desk, img, q):
+def updateProduct(idp, IDkategori, nama, harga, desk, img, q):
     try:
-        query = f"""
+        query = """
         UPDATE product
-        SET IDKategori = {IDkategori}, nama_produk = {nama}, harga {harga}, deskripsi = {desk}, img = {img}, quantity = {q}
-        WHERE IDProduct = {id}
+        SET IDKategori = %s, nama_produk = %s, harga = %s, deskripsi = %s, img = %s, quantity = %s
+        WHERE IDProduct = %s
         """
-        cursor.execute(query)
-        print(f"Data product dengan id {id} berhasil di update")
+        cursor.execute(query, (IDkategori, nama, harga, desk, img, q, idp))
+        print(f"Data product dengan id {idp} berhasil di update")
         myDB.commit()
         
     except mysql.connector.Error as err:
-        print(f"Error updating Product where id : {id} err : {err}")
+        print(f"Error updating Product where id : {idp} err : {err}")
         myDB.rollback()
     
     finally:
