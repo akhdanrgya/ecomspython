@@ -45,7 +45,7 @@ def deleteProduct(id):
     finally:
         cursor.close()
 
-def upadteProduct(id, IDkategori, nama, harga, desk, img, q):
+def updateProduct(id, IDkategori, nama, harga, desk, img, q):
     try:
         query = f"""
         UPDATE product

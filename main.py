@@ -2,6 +2,7 @@ import customtkinter
 from tkinter import ttk
 import matplotlib.pyplot as plt
 from libs.productController import *
+from libs.kategoriController import *
 
 customtkinter.set_appearance_mode("light")
 
@@ -119,9 +120,39 @@ class App(customtkinter.CTk):
 
     def display_edit_data(self):
         self.clear_content()
+        
         label = customtkinter.CTkLabel(self.content, text="Edit Product Data", font=("Arial", 24))
         label.pack(pady=20)
 
+        # Form fields
+        fields = ["ID Product", "ID Kategori", "Nama Produk", "Harga", "Deskripsi", "Image URL", "Quantity"]
+        entries = {}
+
+        for field in fields:
+            frame = customtkinter.CTkFrame(self.content)
+            frame.pack(pady=5, padx=10, fill="x")
+
+            label = customtkinter.CTkLabel(frame, text=field, font=("Arial", 12))
+            label.pack(side="left", padx=10)
+
+            entry = customtkinter.CTkEntry(frame, font=("Arial", 12))
+            entry.pack(side="right", fill="x", expand=True, padx=10)
+            entries[field] = entry
+
+        def on_submit():
+            id = entries["ID Product"].get()
+            IDkategori = entries["ID Kategori"].get()
+            nama = entries["Nama Produk"].get()
+            harga = entries["Harga"].get()
+            desk = entries["Deskripsi"].get()
+            img = entries["Image URL"].get()
+            q = entries["Quantity"].get()
+
+            updateProduct(id, IDkategori, nama, harga, desk, img, q)
+
+        submit_button = customtkinter.CTkButton(self.content, text="Update", command=on_submit)
+        submit_button.pack(pady=20)
+        
     def display_delete_data(self):
         self.clear_content()
         label = customtkinter.CTkLabel(self.content, text="Delete Product Data", font=("Arial", 24))
