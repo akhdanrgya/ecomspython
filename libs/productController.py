@@ -71,6 +71,31 @@ def showAllProduct():
     except Exception as err:
         print(f"Error data product err : {err}")
 
+def showAllProduct2():
+    try:
+        query = "SELECT * FROM product"
+        cursor.execute(query)
+        products = cursor.fetchall()
+        
+        # Mengonversi tuple menjadi list of dictionaries
+        product_dicts = []
+        for product in products:
+            product_dict = {
+                'IDProduct': product[0],
+                'IDKategori': product[1],
+                'nama_produk': product[2],
+                'harga': product[3],
+                'deskripsi': product[4],
+                'img': product[5],
+                'quantity': product[6]
+            }
+            product_dicts.append(product_dict)
+        
+        return product_dicts
+    except Exception as err:
+        print(f"Error fetching products: {err}")
+
+
 def showAllProductSorted():
     try:
         query = "SELECT * FROM product ORDER BY nama_produk"

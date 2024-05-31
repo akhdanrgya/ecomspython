@@ -182,31 +182,39 @@ class App(customtkinter.CTk):
         kategori_frame.grid_columnconfigure((0, 1, 2, 3, 4), weight=1)
 
         kategori_colors = ["#406DE0", "#C1C1C1", "#C1C1C1", "#C1C1C1", "#C1C1C1"]
-        for i in range(5):
-            btn = customtkinter.CTkButton(kategori_frame, text="Kategori", font=("ArchivoBlack Regular", 30), fg_color=kategori_colors[i], text_color="#FFFFFF" if i == 0 else "#000000")
-            btn.grid(row=0, column=i, padx=5, pady=10, sticky="nsew")
+        kategori = showAllKategori()
+
+        for idx, kat in enumerate(kategori):
+            namaKategori = kat["nama_kategori"]
+            btn = customtkinter.CTkButton(kategori_frame, text=namaKategori, font=("ArchivoBlack Regular", 30), fg_color=kategori_colors[idx], text_color="#FFFFFF" if idx == 0 else "#000000")
+            btn.grid(row=0, column=idx, padx=5, pady=10, sticky="nsew")
 
         content_frame = customtkinter.CTkFrame(self.content, bg_color="#CFD7EB")
         content_frame.pack(fill="both", expand=True, padx=10, pady=10)
         content_frame.grid_columnconfigure((0, 1, 2, 3), weight=1)
         content_frame.grid_rowconfigure((0, 1), weight=1)
 
-        def create_product_frame(parent, row, col):
+        def create_product_frame(parent, row, col, nama, harga):
             product_frame = customtkinter.CTkFrame(parent, bg_color="#FFFFFF", corner_radius=10)
             product_frame.grid(row=row, column=col, padx=5, pady=5, sticky="nsew")
-
-            nama_produk = customtkinter.CTkLabel(product_frame, text="Nama Produk", font=("ArchivoBlack Regular", 24), text_color="#000000", bg_color="#FFFFFF")
+            
+            nama_produk = customtkinter.CTkLabel(product_frame, text=f"{nama}", font=("ArchivoBlack Regular", 24), text_color="#000000", bg_color="#FFFFFF")
             nama_produk.pack(side="bottom", anchor="w", padx=10, pady=10)
 
-            harga_produk = customtkinter.CTkLabel(product_frame, text="Rp. xxxxx", font=("ArchivoBlack Regular", 15), text_color="#000000", bg_color="#FFFFFF")
+            harga_produk = customtkinter.CTkLabel(product_frame, text=f"Rp. {harga}", font=("ArchivoBlack Regular", 15), text_color="#000000", bg_color="#FFFFFF")
             harga_produk.pack(side="bottom", anchor="w", padx=10, pady=(0, 10))
 
-            btn_beli = customtkinter.CTkButton(product_frame, text="", fg_color="#000000", width=20, height=20)
+            btn_beli = customtkinter.CTkButton(product_frame, text="BUY", fg_color="#000000", width=20, height=20)
             btn_beli.pack(side="bottom", anchor="e", padx=10, pady=10)
 
+        products = showAllProduct2()
+        
         positions = [(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (1, 1), (1, 2), (1, 3)]
-        for row, col in positions:
-            create_product_frame(content_frame, row, col)
+        for (row, col), prod in zip(positions, products):
+            nama = prod['nama_produk']
+            harga = prod['harga']
+            create_product_frame(content_frame, row, col, nama, harga)
+
 
 
 if __name__ == "__main__":
