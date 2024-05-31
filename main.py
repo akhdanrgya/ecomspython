@@ -32,7 +32,8 @@ class App(customtkinter.CTk):
             ("Edit Data", self.display_edit_data),
             ("Delete Data", self.display_delete_data),
             ("Search", self.display_search_data),
-            ("Data Transaksi", self.display_transaction)
+            ("Data Transaksi", self.display_transaction),
+            ("E-Commerce", self.displayEcom)
         ]
         
         for (text, command) in buttons:
@@ -44,41 +45,40 @@ class App(customtkinter.CTk):
             widget.destroy()
     
     def display_home(self):
-            self.clear_content()
+        self.clear_content()
+        label = customtkinter.CTkLabel(self.content, text="Welcome to the Online Store Management System", font=("Arial", 24))
+        label.pack(pady=20)
+
+        product = showAllProduct()
+
+        if not product:
+            customtkinter.CTkLabel(self.content, text="Tidak Ada Product", font=("Arial", 24)).pack(pady=20)
+        else:
+            style = ttk.Style()
+            style.configure("Treeview", 
+                            background="white", 
+                            foreground="black", 
+                            rowheight=25, 
+                            fieldbackground="white")
+            style.configure("Treeview.Heading", font=('Arial', 12, 'bold'))
+            view = ttk.Treeview(self.content, columns=("IDProduct", "IDKategori", "nama_produk", "harga", "deskripsi", "quantity"), show="headings")
+            view.heading("IDProduct", text="IDProduct")
+            view.heading("IDKategori", text="IDKategori")
+            view.heading("nama_produk", text="Nama Produk")
+            view.heading("harga", text="Harga")
+            view.heading("deskripsi", text="Deskripsi")
+            view.heading("quantity", text="Quantity")
+            view.column("IDProduct", width=100)
+            view.column("IDKategori", width=100)
+            view.column("nama_produk", width=150)
+            view.column("harga", width=100)
+            view.column("deskripsi", width=250)
+            view.column("quantity", width=100)
+
+            for items in product:
+                view.insert("", "end", values=items)
             
-            label = customtkinter.CTkLabel(self.content, text="Welcome to the Online Store Management System", font=("Arial", 24))
-            label.pack(pady=20)
-
-            product = showAllProduct()
-
-            if not product:
-                customtkinter.CTkLabel(self.content, text="Tidak Ada Product", font=("Arial", 24)).pack(pady=20)
-            else:
-                style = ttk.Style()
-                style.configure("Treeview", 
-                                background="white", 
-                                foreground="black", 
-                                rowheight=25, 
-                                fieldbackground="white")
-                style.configure("Treeview.Heading", font=('Arial', 12, 'bold'))
-                view = ttk.Treeview(self.content, columns=("IDProduct", "IDKategori", "nama_produk", "harga", "deskripsi", "quantity"), show="headings")
-                view.heading("IDProduct", text="IDProduct")
-                view.heading("IDKategori", text="IDKategori")
-                view.heading("nama_produk", text="Nama Produk")
-                view.heading("harga", text="Harga")
-                view.heading("deskripsi", text="Deskripsi")
-                view.heading("quantity", text="Quantity")
-                view.column("IDProduct", width=100)
-                view.column("IDKategori", width=100)
-                view.column("nama_produk", width=150)
-                view.column("harga", width=100)
-                view.column("deskripsi", width=250)
-                view.column("quantity", width=100)
-
-                for items in product:
-                    view.insert("", "end", values=items)
-                
-                view.pack(fill="both", expand=True, pady=10)
+            view.pack(fill="both", expand=True, pady=10)
 
     
     def display_insert_data(self):
@@ -165,7 +165,49 @@ class App(customtkinter.CTk):
     def display_transaction(self):
         self.clear_content()
         label = customtkinter.CTkLabel(self.content, text="Data Transaksi", font=("Arial", 24))
-        label.pack(pady = 20)
+        label.pack(pady=20)
+    
+    def displayEcom(self):
+        self.clear_content()
+        
+        header_frame = customtkinter.CTkFrame(self.content, bg_color="#D9D9D9", height=81)
+        header_frame.pack(fill="x", padx=10, pady=10)
+        header_frame.pack_propagate(False)
+
+        search_label = customtkinter.CTkLabel(header_frame, text="Search", font=("ArchivoBlack Regular", 40), text_color="#000000", bg_color="#D9D9D9")
+        search_label.pack(side="left", padx=10)
+
+        kategori_frame = customtkinter.CTkFrame(self.content, bg_color="#CFD7EB")
+        kategori_frame.pack(fill="x", padx=10)
+        kategori_frame.grid_columnconfigure((0, 1, 2, 3, 4), weight=1)
+
+        kategori_colors = ["#406DE0", "#C1C1C1", "#C1C1C1", "#C1C1C1", "#C1C1C1"]
+        for i in range(5):
+            btn = customtkinter.CTkButton(kategori_frame, text="Kategori", font=("ArchivoBlack Regular", 30), fg_color=kategori_colors[i], text_color="#FFFFFF" if i == 0 else "#000000")
+            btn.grid(row=0, column=i, padx=5, pady=10, sticky="nsew")
+
+        content_frame = customtkinter.CTkFrame(self.content, bg_color="#CFD7EB")
+        content_frame.pack(fill="both", expand=True, padx=10, pady=10)
+        content_frame.grid_columnconfigure((0, 1, 2, 3), weight=1)
+        content_frame.grid_rowconfigure((0, 1), weight=1)
+
+        def create_product_frame(parent, row, col):
+            product_frame = customtkinter.CTkFrame(parent, bg_color="#FFFFFF", corner_radius=10)
+            product_frame.grid(row=row, column=col, padx=5, pady=5, sticky="nsew")
+
+            nama_produk = customtkinter.CTkLabel(product_frame, text="Nama Produk", font=("ArchivoBlack Regular", 24), text_color="#000000", bg_color="#FFFFFF")
+            nama_produk.pack(side="bottom", anchor="w", padx=10, pady=10)
+
+            harga_produk = customtkinter.CTkLabel(product_frame, text="Rp. xxxxx", font=("ArchivoBlack Regular", 15), text_color="#000000", bg_color="#FFFFFF")
+            harga_produk.pack(side="bottom", anchor="w", padx=10, pady=(0, 10))
+
+            btn_beli = customtkinter.CTkButton(product_frame, text="", fg_color="#000000", width=20, height=20)
+            btn_beli.pack(side="bottom", anchor="e", padx=10, pady=10)
+
+        positions = [(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (1, 1), (1, 2), (1, 3)]
+        for row, col in positions:
+            create_product_frame(content_frame, row, col)
+
 
 if __name__ == "__main__":
     app = App()
