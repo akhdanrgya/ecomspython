@@ -69,7 +69,6 @@ def showAllProduct():
         SELECT * FROM product
         """
         
-        cursor = myDB.cursor(dictionary=True)
         cursor.execute(query)
         product = cursor.fetchall()
         
