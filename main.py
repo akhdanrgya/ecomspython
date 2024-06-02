@@ -82,7 +82,41 @@ class App(customtkinter.CTk):
             
             view.pack(fill="both", expand=True, pady=10)
 
-    
+    def display_transaction(self):
+        self.clear_content()
+        label = customtkinter.CTkLabel(self.content, text="Data Transaksi", font=("Arial", 24))
+        label.pack(pady=20)
+        
+        transaksi = showTransaction()
+
+        if not transaksi:
+            customtkinter.CTkLabel(self.content, text="Tidak Ada Transaksi", font=("Arial", 24)).pack(pady=20)
+        else:
+            style = ttk.Style()
+            style.configure("Treeview", 
+                            background="white", 
+                            foreground="black", 
+                            rowheight=25, 
+                            fieldbackground="white")
+            style.configure("Treeview.Heading", font=('Arial', 12, 'bold'))
+            view = ttk.Treeview(self.content, columns=("No","Nama Product", "Jumlah", "Total Harga"), show="headings")
+            view.heading("No", text="No")
+            view.heading("Nama Product", text="Nama Product")
+            view.heading("Jumlah", text="Jumlah")
+            view.heading("Total Harga", text="Total Harga")
+
+            view.column("No", width=5)
+            view.column("Nama Product", width=100)
+            view.column("Jumlah", width=100)
+            view.column("Total Harga", width=150)
+
+            # Memasukkan data transaksi ke dalam Treeview
+            for no, data in enumerate(transaksi):
+                view.insert("", "end", values=(no + 1 ,data['Nama Product'], data['Jumlah'], data['Total Harga']))
+
+            view.pack(padx=20, pady=20, fill="both", expand=True)
+
+
     def display_insert_data(self):
         self.clear_content()
         
@@ -119,7 +153,7 @@ class App(customtkinter.CTk):
         
         output_text = customtkinter.CTkTextbox(self.content, height=10)
         output_text.pack(pady=20, padx=20, fill="both", expand=True)
-
+        
     def display_edit_data(self):
         self.clear_content()
         
@@ -164,10 +198,6 @@ class App(customtkinter.CTk):
         label = customtkinter.CTkLabel(self.content, text="Search Product Data", font=("Arial", 24))
         label.pack(pady=20)
     
-    def display_transaction(self):
-        self.clear_content()
-        label = customtkinter.CTkLabel(self.content, text="Data Transaksi", font=("Arial", 24))
-        label.pack(pady=20)
     
     def displayEcom(self):
         self.clear_content()
