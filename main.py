@@ -51,7 +51,7 @@ class App(customtkinter.CTk):
         label = customtkinter.CTkLabel(self.content, text="Welcome to the Online Store Management System", font=("Arial", 24))
         label.pack(pady=20)
 
-        product = showAllProduct()
+        product = showAllProduct2()
 
         if not product:
             customtkinter.CTkLabel(self.content, text="Tidak Ada Product", font=("Arial", 24)).pack(pady=20)
@@ -63,24 +63,24 @@ class App(customtkinter.CTk):
                             rowheight=25, 
                             fieldbackground="white")
             style.configure("Treeview.Heading", font=('Arial', 12, 'bold'))
-            view = ttk.Treeview(self.content, columns=("IDProduct", "IDKategori", "nama_produk", "harga", "deskripsi", "quantity"), show="headings")
-            view.heading("IDProduct", text="IDProduct")
+            view = ttk.Treeview(self.content, columns=("No", "IDKategori", "nama_produk", "harga", "deskripsi", "quantity"), show="headings")
+            view.heading("No", text="No")
             view.heading("IDKategori", text="IDKategori")
             view.heading("nama_produk", text="Nama Produk")
             view.heading("harga", text="Harga")
             view.heading("deskripsi", text="Deskripsi")
             view.heading("quantity", text="Quantity")
-            view.column("IDProduct", width=100)
+            view.column("No", width=100)
             view.column("IDKategori", width=100)
             view.column("nama_produk", width=150)
             view.column("harga", width=100)
             view.column("deskripsi", width=250)
             view.column("quantity", width=100)
 
-            for items in product:
-                view.insert("", "end", values=items)
+            for no, items in enumerate(product):
+                view.insert("", "end", values= (no + 1, items['IDKategori'], items['nama_produk'], items['harga'], items['deskripsi'], items['quantity']))
             
-            view.pack(fill="both", expand=True, pady=10)
+            view.pack(padx=20, pady=20, fill="both", expand=True)
 
     def display_transaction(self):
         self.clear_content()
@@ -110,7 +110,6 @@ class App(customtkinter.CTk):
             view.column("Jumlah", width=100)
             view.column("Total Harga", width=150)
 
-            # Memasukkan data transaksi ke dalam Treeview
             for no, data in enumerate(transaksi):
                 view.insert("", "end", values=(no + 1 ,data['Nama Product'], data['Jumlah'], data['Total Harga']))
 
