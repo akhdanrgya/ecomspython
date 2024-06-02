@@ -174,19 +174,19 @@ class App(customtkinter.CTk):
         header_frame.pack(fill="x", padx=10, pady=10)
         header_frame.pack_propagate(False)
 
-        search_label = customtkinter.CTkLabel(header_frame, text="Search", font=("ArchivoBlack Regular", 40), text_color="#000000", bg_color="#D9D9D9")
-        search_label.pack(side="left", padx=10)
+        search_entry = customtkinter.CTkEntry(header_frame, font=("ArchivoBlack Regular", 40), bg_color="#FFFFFF", fg_color="#ffffff", placeholder_text="Search", placeholder_text_color="#808080")
+        search_entry.pack(side="left", padx=10, fill="x", expand = True)
 
         kategori_frame = customtkinter.CTkFrame(self.content, bg_color="#CFD7EB")
         kategori_frame.pack(fill="x", padx=10)
         kategori_frame.grid_columnconfigure((0, 1, 2, 3, 4), weight=1)
 
-        kategori_colors = ["#406DE0", "#C1C1C1", "#C1C1C1", "#C1C1C1", "#C1C1C1"]
+        kategori_colors = "#406DE0"
         kategori = showAllKategori()
 
-        for idx, kat in enumerate(kategori):
+        for idx,kat in enumerate(kategori):
             namaKategori = kat["nama_kategori"]
-            btn = customtkinter.CTkButton(kategori_frame, text=namaKategori, font=("ArchivoBlack Regular", 30), fg_color=kategori_colors[idx], text_color="#FFFFFF" if idx == 0 else "#000000")
+            btn = customtkinter.CTkButton(kategori_frame, text=namaKategori, font=("ArchivoBlack Regular", 30), fg_color=kategori_colors, text_color="#FFFFFF")
             btn.grid(row=0, column=idx, padx=5, pady=10, sticky="nsew")
 
         content_frame = customtkinter.CTkFrame(self.content, bg_color="#CFD7EB")
