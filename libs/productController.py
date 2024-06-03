@@ -55,7 +55,54 @@ def updateProduct(idp, IDkategori, nama, harga, desk, img, q):
     except mysql.connector.Error as err:
         print(f"Error updating Product where id : {idp} err : {err}")
         myDB.rollback()
-    
+
+def dynamicUpdateProduct(idp, IDkategori, nama, harga, desk, img, q):
+    try:
+        # List of fields to update and their corresponding values
+        fields = []
+        values = []
+        
+        # Check each parameter, add to fields and values if not None
+        if IDkategori is not None:
+            fields.append("IDKategori = %s")
+            values.append(IDkategori)
+        if nama is not None:
+            fields.append("nama_produk = %s")
+            values.append(nama)
+        if harga is not None:
+            fields.append("harga = %s")
+            values.append(harga)
+        if desk is not None:
+            fields.append("deskripsi = %s")
+            values.append(desk)
+        if img is not None:
+            fields.append("img = %s")
+            values.append(img)
+        if q is not None:
+            fields.append("quantity = %s")
+            values.append(q)
+        
+        # If no fields are provided, raise an error
+        if not fields:
+            print("No fields to update!")
+            return
+
+        # Create the query string
+        query = f"""
+        UPDATE product
+        SET {', '.join(fields)}
+        WHERE IDProduct = %s
+        """
+        values.append(idp)
+        
+        cursor.execute(query, tuple(values))
+        print(f"Data product dengan id {idp} berhasil di update")
+        myDB.commit()
+        
+    except mysql.connector.Error as err:
+        print(f"Error updating Product where id: {idp}, err: {err}")
+        myDB.rollback()
+
 
 
 def showAllProduct():
