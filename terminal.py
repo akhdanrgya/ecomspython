@@ -2,7 +2,7 @@ from libs.kategoriController import *
 from libs.productController import *
 from libs.transactionController import *
 import matplotlib as plt
-from main import App
+from ecom import App
 
 def searchProductMenu():
     while True:
@@ -150,17 +150,17 @@ def productMenu():
         else:
             print(f"Menu pilihan {pilih} tidak tersedia.")
 
+def searchTransaction():
+    print("search")
+
 def dataTransaction():
     while True:
         print("""
               <<< Menu Data Transaction >>>
               1. Show Data Transaction
-              2. Add Data Transaction
-              3. Edit Data Transaction
-              4. Delete Data Transaction
-              5. Search Transaction
-              6. Back
-              7. Exit
+              2. Search Transaction
+              3. Back
+              4. Exit
               """)
         
         pilih = int(input("Masukan pilihan: "))
