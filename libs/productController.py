@@ -155,20 +155,6 @@ def showAllProductSorted():
     except Exception as err:
         print(f"Error fetching data products: {err}")
 
-def showProductById(id):
-    try:
-        query = f"""
-        SELECT * FROM product
-        WHERE IDProduct = {id}
-        """
-        
-        cursor.execute(query)
-        product = cursor.fetchone()
-        
-        return product
-    except Exception as err:
-        print(f"Data product dengan id {id} error : {err}")
-
 def kurangQuantity(id, newQ):
     try:
         query =f"""
@@ -240,4 +226,26 @@ def searchProductsByQuantity(quantity):
         return matching_products
     else:
         print("No products found with the specified quantity.")
+        return None
+
+def searchProductsByID(ProdID):
+    products = showAllProduct2()
+    
+    matching_products = [product for product in products if product['IDProduct'] == ProdID]
+    
+    if matching_products:
+        print("Products found:")
+        for product in matching_products:
+            print(f"""
+            ID Product    : {product['IDProduct']}
+            ID Kategori   : {product['IDKategori']}
+            Nama Product  : {product['nama_produk']}
+            Harga         : {product['harga']}
+            Deskripsi     : {product['deskripsi']}
+            Gambar        : {product['img']}
+            Quantity      : {product['quantity']}
+            """)
+        return matching_products
+    else:
+        print("Data yang dicari tidak ada.")
         return None

@@ -21,7 +21,7 @@ def searchProductMenu():
         
         elif pilih == 2:
             search = int(input("Masukan id produk yang ingin di cari: "))
-            searchProduct(search, "IDProduct")
+            searchProductsByID(search)
         
         elif pilih == 3:
             search = int(input("Masukan quantity product yang ingin di cari: "))
