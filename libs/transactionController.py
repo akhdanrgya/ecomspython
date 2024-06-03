@@ -1,3 +1,4 @@
+
 import mysql.connector
 
 # buat konekin database ke python
@@ -11,14 +12,34 @@ myDB = mysql.connector.connect(
 # buat eksekusi perintah di mysql
 cursor = myDB.cursor()
 
-def selectedProduct(IDProduct):
+def kurangQuantity(id, newQ):
+    try:
+        query =f"""
+        UPDATE product
+        SET quantity = {newQ}
+        WHERE IDProduct = {id}
+        """
+        
+        cursor.execute(query)
+        myDB.commit()
+    except mysql.connector.Error as err:
+        print(f"product quantity error : {err}")
+        myDB.rollback()
+
+def selectedQProduct(IDProduct):
     query = """SELECT quantity FROM product WHERE IDProduct = %s"""
     values = (IDProduct,)
     
     cursor.execute(query, values)
     quantityProduct = cursor.fetchone()
 
-    return quantityProduct
+    return quantityProduct[0]
+
+def afterTransaction(IDProduct, q):
+    quantity = selectedQProduct(IDProduct)
+    final = quantity - q
+    
+    kurangQuantity(IDProduct, final)
 
 def buy(product, q, total):
     queryInsert = "INSERT INTO transaksi(IDProduct, jumlah, total_harga) VALUES (%s, %s, %s)"
@@ -29,8 +50,7 @@ def buy(product, q, total):
         cursor.execute(queryInsert, values)
         myDB.commit()
         print(f"Transaction Successfully ID Product {product}")
-        
-        quantityProduct = selectedProduct(product)
+        afterTransaction(product, q)
     
     except mysql.connector.Error as err:
         print(f"Error: {err}")

@@ -90,7 +90,10 @@ def showAllProduct2():
             }
             product_dicts.append(product_dict)
         
+        myDB.commit()
+        
         return product_dicts
+    
     except Exception as err:
         print(f"Error fetching products: {err}")
 
