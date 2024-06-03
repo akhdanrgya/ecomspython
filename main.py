@@ -149,7 +149,7 @@ def productMenu():
         elif pilih == 5 :
             searchProductMenu()
 
-        elif pilih == 4 :
+        elif pilih == 6 :
             break
         elif pilih == 7 :
             print("Terimakasih sudah menggunakan aplikasi ini")
