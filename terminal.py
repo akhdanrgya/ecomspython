@@ -3,6 +3,37 @@ from libs.productController import *
 from libs.transactionController import *
 import matplotlib as plt
 
+def searchProductMenu():
+    while True:
+        print("""`
+            <<< Search Product >>>
+            1. Cari Nama Product
+            2. Cari ID Product
+            3. Cari Quantity Product
+            4. Back
+            5. Exit
+            """)
+                
+        pilih = int(input("Masukan pilihan: "))
+        if pilih == 1:
+            search = input("Masukan nama produk yang ingin di cari: ")
+            searchProduct(search, "nama_produk")
+        
+        elif pilih == 2:
+            search = int(input("Masukan id produk yang ingin di cari: "))
+            searchProduct(search, "IDProduct")
+        
+        elif pilih == 3:
+            search = int(input("Masukan quantity product yang ingin di cari: "))
+            searchProductsByQuantity(search)
+        
+        elif pilih == 4:
+            break
+        
+        elif pilih == 5:
+            print("Terimakasih sudah menggunakan aplikasi ini")
+            exit()
+
 def productMenu():
     while True:
         print("""
@@ -88,7 +119,7 @@ def productMenu():
             
 
             updateProduct(update, IDkategori, nama, harga, desk, img, q)
-   
+            
         elif pilih == 4 :
             product = showAllProduct2()
             for i, items in enumerate(product):
@@ -108,30 +139,9 @@ def productMenu():
             deleteProduct(delete)
         
         elif pilih == 5 :
-            print("""
-                  <<< Search Product >>>
-                  1. Cari Nama Product
-                  2. Cari ID Product
-                  3. Cari Quantity Product
-                  4. Back
-                  5. Exit
-                  """)
-            
-            pilih = int(input("Masukan pilihan: "))
+            searchProductMenu()
 
-            if pilih == 1:
-                search = input("Masukan nama produk yang ingin di cari: ")
-                searchProduct(search, "nama_produk")
-            
-            elif pilih == 2:
-                search = int(input("Masukan id produk yang ingin di cari: "))
-                searchProduct(search, "IDProduct")
-            
-            elif pilih == 3:
-                search = int(input("Masukan quantity product yang ingin di cari: "))
-                searchProductsByQuantity(search)
-                
-        elif pilih == 6 :
+        elif pilih == 4 :
             break
         elif pilih == 7 :
             print("Terimakasih sudah menggunakan aplikasi ini")
