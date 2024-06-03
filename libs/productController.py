@@ -77,7 +77,6 @@ def showAllProduct2():
         cursor.execute(query)
         products = cursor.fetchall()
         
-        # Mengonversi tuple menjadi list of dictionaries
         product_dicts = []
         for product in products:
             product_dict = {

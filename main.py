@@ -1,10 +1,10 @@
 import customtkinter
 from tkinter import ttk
-import matplotlib.pyplot as plt
+import tkinter.simpledialog
+
 from libs.productController import *
 from libs.kategoriController import *
-from libs.transaction import *
-import tkinter.simpledialog
+from libs.transactionController import *
 
 customtkinter.set_appearance_mode("light")
 
@@ -242,7 +242,6 @@ class App(customtkinter.CTk):
                     response = tkinter.messagebox.askokcancel("Konfirmasi Pembelian", f"Anda akan membeli {quantity} produk {nama_produk} dengan total pembayaran Rp. {total_pembayaran}. Lanjutkan?")
                     if response:
                         print(f"Anda telah membeli {quantity} produk {nama_produk} dengan total pembayaran Rp. {total_pembayaran}")
-                        buy(IDProd, quantity, total_pembayaran)
                     else:
                         print("Pembelian dibatalkan")
 
