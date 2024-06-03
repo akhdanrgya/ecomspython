@@ -58,7 +58,7 @@ def buy(product, q, total):
 
 def showTransaction():
     query = """
-    SELECT product.nama_produk, transaksi.jumlah, transaksi.total_harga
+    SELECT transaksi.IDTransaksi, product.nama_produk, transaksi.jumlah, transaksi.total_harga
     FROM transaksi
     LEFT JOIN product ON transaksi.IDProduct = product.IDProduct;
     """
@@ -69,9 +69,10 @@ def showTransaction():
 
         for items in transaksi:
             val = {
-                'Nama Product' : items[0],
-                'Jumlah' : items[1],
-                'Total Harga' : items[2]
+                'IDTransaksi' : items[0],
+                'Nama Product' : items[1],
+                'Jumlah' : items[2],
+                'Total Harga' : items[3]
             }
             transaksiDict.append(val)
         

@@ -149,6 +149,34 @@ def productMenu():
         else:
             print(f"Menu pilihan {pilih} tidak tersedia.")
 
+def dataTransaction():
+    while True:
+        print("""
+              <<< Menu Data Transaction >>>
+              1. Show Data Transaction
+              2. Add Data Transaction
+              3. Edit Data Transaction
+              4. Delete Data Transaction
+              5. Search Transaction
+              6. Back
+              7. Exit
+              """)
+        
+        pilih = int(input("Masukan pilihan: "))
+
+        if pilih == 1:
+            transaction = showTransaction()
+            
+            for i, items in enumerate(transaction):
+                print(f"""
+                No. {i + 1}
+                ID Transaction: {items['IDTransaksi']}
+                Nama Product  : {items['Nama Product']}
+                Jumlah        : {items['Jumlah']}
+                Total Harga   : {items['Total Harga']}
+                """)
+
+
 def main():
     while True:
         print("""
@@ -165,7 +193,7 @@ def main():
         if pilih == 1:
             productMenu()
         elif pilih == 2 :
-            print("2")
+            dataTransaction()
         elif pilih == 3 :
             print("2")
         elif pilih == 4 :
