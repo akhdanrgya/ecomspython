@@ -11,8 +11,9 @@ def productMenu():
               2. Add Data Product
               3. Edit Data Product
               4. Delete Data Product
-              5. Back
-              6. Exit
+              5. Search Product
+              6. Back
+              7. Exit
               """)
         
         pilih = int(input("Masukan Pilihan: "))
@@ -73,7 +74,6 @@ def productMenu():
                 print(f"Product dengan ID {update} tidak ditemukan!")
                 return
 
-            # Input fields to update, use current values if input is empty
             IDkategori = input(f"Masukan ID kategori baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['IDKategori']
             nama = input(f"Masukan nama produk baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['nama_produk']
             harga = input(f"Masukan harga baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['harga']
@@ -106,10 +106,34 @@ def productMenu():
             delete = int(input("Masukan id produk yang mau di hapus: "))
 
             deleteProduct(delete)
-            
+        
         elif pilih == 5 :
-            break
+            print("""
+                  <<< Search Product >>>
+                  1. Cari Nama Product
+                  2. Cari ID Product
+                  3. Cari Quantity Product
+                  4. Back
+                  5. Exit
+                  """)
+            
+            pilih = int(input("Masukan pilihan: "))
+
+            if pilih == 1:
+                search = input("Masukan nama produk yang ingin di cari: ")
+                searchProduct(search, "nama_produk")
+            
+            elif pilih == 2:
+                search = int(input("Masukan id produk yang ingin di cari: "))
+                searchProduct(search, "IDProduct")
+            
+            elif pilih == 3:
+                search = int(input("Masukan quantity product yang ingin di cari: "))
+                searchProductsByQuantity(search)
+                
         elif pilih == 6 :
+            break
+        elif pilih == 7 :
             print("Terimakasih sudah menggunakan aplikasi ini")
             exit()
         else:

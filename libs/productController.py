@@ -201,16 +201,43 @@ def binarySearch(arr, target, key):
             high = mid - 1
         else:
             return arr[mid]
-    
-    return None
 
-def searchProduct(nama_produk):
-    products = showAllProduct()
-    result = binarySearch(products, nama_produk, 'nama_produk')
+def searchProduct(value, key):
+    products = showAllProductSorted()
+    result = binarySearch(products, value, key)
     
     if result:
-        print("Product found:", result)
-        return result
+        print("Product found:")
+        print(f"""
+        ID Product    : {result['IDProduct']}
+        ID Kategori   : {result['IDKategori']}
+        Nama Product  : {result['nama_produk']}
+        Harga         : {result['harga']}
+        Deskripsi     : {result['deskripsi']}
+        Gambar        : {result['img']}
+        Quantity      : {result['quantity']}
+        """)
     else:
         print("Product not found.")
+
+def searchProductsByQuantity(quantity):
+    products = showAllProduct2()
+    
+    matching_products = [product for product in products if product['quantity'] == quantity]
+    
+    if matching_products:
+        print("Products found:")
+        for product in matching_products:
+            print(f"""
+            ID Product    : {product['IDProduct']}
+            ID Kategori   : {product['IDKategori']}
+            Nama Product  : {product['nama_produk']}
+            Harga         : {product['harga']}
+            Deskripsi     : {product['deskripsi']}
+            Gambar        : {product['img']}
+            Quantity      : {product['quantity']}
+            """)
+        return matching_products
+    else:
+        print("No products found with the specified quantity.")
         return None
