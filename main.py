@@ -242,6 +242,7 @@ class App(customtkinter.CTk):
                     response = tkinter.messagebox.askokcancel("Konfirmasi Pembelian", f"Anda akan membeli {quantity} produk {nama_produk} dengan total pembayaran Rp. {total_pembayaran}. Lanjutkan?")
                     if response:
                         print(f"Anda telah membeli {quantity} produk {nama_produk} dengan total pembayaran Rp. {total_pembayaran}")
+                        buy(IDProd, quantity, total_pembayaran)
                     else:
                         print("Pembelian dibatalkan")
 

@@ -31,9 +31,6 @@ def buy(product, q, total):
         print(f"Transaction Successfully ID Product {product}")
         
         quantityProduct = selectedProduct(product)
-        kurang = quantityProduct - q
-
-        print(kurang)
     
     except mysql.connector.Error as err:
         print(f"Error: {err}")
