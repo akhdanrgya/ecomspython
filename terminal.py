@@ -2,6 +2,7 @@ from libs.kategoriController import *
 from libs.productController import *
 from libs.transactionController import *
 import matplotlib as plt
+from main import App
 
 def searchProductMenu():
     while True:
@@ -176,7 +177,6 @@ def dataTransaction():
                 Total Harga   : {items['Total Harga']}
                 """)
 
-
 def main():
     while True:
         print("""
@@ -185,7 +185,8 @@ def main():
             2. Data Transaction
             3. Data Kategori
             4. Statistik
-            5. Exit
+            5. Ecommerce
+            6. Exit
             """)
         
         pilih = int(input("Masukan pilihan: "))
@@ -199,6 +200,10 @@ def main():
         elif pilih == 4 :
             print("4")
         elif pilih == 5 :
+            app = App()
+            app.mainloop()
+            break
+        elif pilih == 6 :
             print("Terimakasih sudah menggunakan aplikasi ini")
             exit()
         else:
