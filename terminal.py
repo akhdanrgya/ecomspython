@@ -6,7 +6,7 @@ from ecom import App
 
 def searchProductMenu():
     while True:
-        print("""`
+        print("""
             <<< Search Product >>>
             1. Cari Nama Product
             2. Cari ID Product
@@ -67,59 +67,66 @@ def productMenu():
                 
                 
         elif pilih == 2 :
-            kategori = showAllKategori()
-            for items in kategori:
-                print(f"Kategori {items['nama_kategori']} dengan angka {items['IDKategori']}")
-            inputKategori = int(input("\nMasukan angka kategori product: "))
-            inputNamaProduk = input("Masukan nama produk: ") 
-            inputHargaProduk = int(input("Masukan harga produk: "))
-            inputDeskripsi = input("Masukan deskripsi produk (optional) : ")
-            inputIMG = input("Masukan url gambar produk: ")
-            inputQuantity = int(input("Masukan jumlah quantity produk: "))
-            
-            addProduct(inputKategori, inputNamaProduk, inputHargaProduk, inputDeskripsi, inputIMG, inputQuantity)
-            
+            try:
+                kategori = showAllKategori()
+                for items in kategori:
+                    print(f"Kategori {items['nama_kategori']} dengan angka {items['IDKategori']}")
+                inputKategori = int(input("\nMasukan angka kategori product: "))
+                inputNamaProduk = input("Masukan nama produk: ") 
+                inputHargaProduk = int(input("Masukan harga produk: "))
+                inputDeskripsi = input("Masukan deskripsi produk (optional) : ")
+                inputIMG = input("Masukan url gambar produk: ")
+                inputQuantity = int(input("Masukan jumlah quantity produk: "))
+                
+                addProduct(inputKategori, inputNamaProduk, inputHargaProduk, inputDeskripsi, inputIMG, inputQuantity)
+            except Exception as err:
+                print(f"Silahkan input dengan benar: {err}")
+
         elif pilih == 3 :
-            product = showAllProduct2()
-            for i, items in enumerate(product):
-                print(f"""
-                No. {i + 1}
-                ID Product    : {items['IDProduct']}
-                ID Kategori   : {items['IDKategori']}
-                Nama Product  : {items['nama_produk']}
-                Harga         : {items['harga']}
-                Deskripsi     : {items['deskripsi']}
-                Gambar        : {items['img']}
-                Quantity      : {items['quantity']}
-                """)
-            
-            update = int(input("Masukan ID product yang akan di update: "))
+            try:
+                product = showAllProduct2()
+                for i, items in enumerate(product):
+                    print(f"""
+                    No. {i + 1}
+                    ID Product    : {items['IDProduct']}
+                    ID Kategori   : {items['IDKategori']}
+                    Nama Product  : {items['nama_produk']}
+                    Harga         : {items['harga']}
+                    Deskripsi     : {items['deskripsi']}
+                    Gambar        : {items['img']}
+                    Quantity      : {items['quantity']}
+                    """)
+                
+                update = int(input("Masukan ID product yang akan di update: "))
 
 
-            selected_product = None
-            for item in product:
-                if item['IDProduct'] == update:
-                    selected_product = item
-                    break
-            
-            if not selected_product:
-                print(f"Product dengan ID {update} tidak ditemukan!")
-                return
+                selected_product = None
+                for item in product:
+                    if item['IDProduct'] == update:
+                        selected_product = item
+                        break
+                
+                if not selected_product:
+                    print(f"Product dengan ID {update} tidak ditemukan!")
+                    return
 
-            IDkategori = input(f"Masukan ID kategori baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['IDKategori']
-            nama = input(f"Masukan nama produk baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['nama_produk']
-            harga = input(f"Masukan harga baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['harga']
-            desk = input(f"Masukan deskripsi baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['deskripsi']
-            img = input(f"Masukan URL gambar baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['img']
-            q = input(f"Masukan quantity baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['quantity']
-            
-            if harga:
-                harga = int(harga)
-            if q:
-                q = int(q)
-            
+                IDkategori = input(f"Masukan ID kategori baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['IDKategori']
+                nama = input(f"Masukan nama produk baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['nama_produk']
+                harga = input(f"Masukan harga baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['harga']
+                desk = input(f"Masukan deskripsi baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['deskripsi']
+                img = input(f"Masukan URL gambar baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['img']
+                q = input(f"Masukan quantity baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['quantity']
+                
+                if harga:
+                    harga = int(harga)
+                if q:
+                    q = int(q)
+                
 
-            updateProduct(update, IDkategori, nama, harga, desk, img, q)
+                updateProduct(update, IDkategori, nama, harga, desk, img, q)
+            
+            except Exception as err:
+                print(f"Silahkan input dengan benar: {err}")
             
         elif pilih == 4 :
             product = showAllProduct2()
