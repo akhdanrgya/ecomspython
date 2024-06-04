@@ -234,6 +234,125 @@ def dataTransaction():
         else :
             print(f"Menu pilihan {pilih} tidak tersedia")
 
+def kategoriMenu():
+    while True:
+        print("""
+              <<< Menu Data Kategori >>>
+              1. Show Data Kategori
+              2. Add Data Kategori
+              3. Edit Data Kategori
+              4. Delete Data Kategori
+              5. Search Kategori
+              6. Back
+              7. Exit
+              """)
+        
+        pilih = int(input("Masukan pilihan: "))
+
+        if pilih == 1:
+            kategori = showAllKategori()
+
+            for i, items in enumerate(kategori):
+                print(f"""
+                      No. {i + 1}
+                      ID Kategori   : {items['IDKategori']}
+                      Nama Kategori : {items['nama_kategori']}
+                      """)
+        
+        elif pilih == 2:
+            val = input("Silahkan masukan nama kategori baru: ")
+
+            if not val:
+                print("Harus di isi")
+            else:
+                addKategori(val)
+        
+        elif pilih == 3:
+            try:
+                kategori = showAllKategori()
+
+                for i, items in enumerate(kategori):
+                    print(f"""
+                      No. {i + 1}
+                      ID Kategori   : {items['IDKategori']}
+                      Nama Kategori : {items['nama_kategori']}
+                      """)
+                    
+                idKategori = int(input("Masukan ID kategori yang ingin di edit: "))
+
+                selectedKategori = None
+                for item in kategori:
+                    if item['IDKategori'] == idKategori:
+                        selectedKategori = item
+                        break
+                
+                if not selectedKategori:
+                    print(f"Kategori dengan ID {idKategori} tidak ditemukan!")
+                    return
+                
+                newNama = input("Masukan nama kategori baru (atau kosongkan jika tidak ingin diubah): ") or selectedKategori['nama_kategori']
+
+                updateKategori(idKategori, newNama)
+                
+            except Exception as err:
+                print(f"error: {err}")
+        
+        elif pilih == 4:
+            kategori = showAllKategori()
+
+            for i, items in enumerate(kategori):
+                print(f"""
+                      No. {i + 1}
+                      ID Kategori   : {items['IDKategori']}
+                      Nama Kategori : {items['nama_kategori']}
+                      """)
+            
+            dell = int(input("Masukan id kategori yang ingin di hapus: "))
+
+            deleteKategori(dell)
+        
+        elif pilih == 5:
+            while True:
+                print("""
+                      <<< Search Kategori >>>
+                      1. Search kategori By ID
+                      2. Search Kategori By Nama Kategori
+                      3. Back
+                      4. Exit
+                      """)
+                
+                pilih = int(input("Masukan pilihan: "))
+
+                if pilih == 1:
+                    val = int(input("Masukan ID Kategori yang ingin di cari: "))
+
+                    searchKategori(val, "IDKategori")
+                
+                elif pilih == 2:
+                    val = input("Masukan nama kategori yang ingin di cari: ")
+
+                    searchKategori(val, "nama_kategori")
+
+                elif pilih == 3:
+                    break
+                
+                elif pilih == 4:
+                    print("Terimakasih sudah menggunakan aplikasi ini")
+                    exit()
+                    
+                else:
+                    print(f"Pilihan {pilih} tidak tersedia")
+        
+        elif pilih == 6:
+            break
+        
+        elif pilih == 7:
+            print("terimakasih sudah menggunakan aplikasi ini")
+            exit()
+        
+        else:
+            print(f"Menu pilihan {pilih} tidak tersedia")
+
 def main():
     while True:
         print("""
@@ -253,7 +372,7 @@ def main():
         elif pilih == 2 :
             dataTransaction()
         elif pilih == 3 :
-            print("2")
+            kategoriMenu()
         elif pilih == 4 :
             print("4")
         elif pilih == 5 :

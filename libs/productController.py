@@ -58,11 +58,9 @@ def updateProduct(idp, IDkategori, nama, harga, desk, img, q):
 
 def dynamicUpdateProduct(idp, IDkategori, nama, harga, desk, img, q):
     try:
-        # List of fields to update and their corresponding values
         fields = []
         values = []
         
-        # Check each parameter, add to fields and values if not None
         if IDkategori is not None:
             fields.append("IDKategori = %s")
             values.append(IDkategori)
@@ -82,12 +80,10 @@ def dynamicUpdateProduct(idp, IDkategori, nama, harga, desk, img, q):
             fields.append("quantity = %s")
             values.append(q)
         
-        # If no fields are provided, raise an error
         if not fields:
             print("No fields to update!")
             return
 
-        # Create the query string
         query = f"""
         UPDATE product
         SET {', '.join(fields)}

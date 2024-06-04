@@ -17,8 +17,8 @@ def showAllKategori():
 
     return kategori
 
-def showkategoriById(id):
-    query = f"SELECT * FROM kategori WHERE IDKategori = {id}"
+def showkategoriById(idk):
+    query = f"SELECT * FROM kategori WHERE IDKategori = {idk}"
     cursor.execute(query)
     kategori = cursor.fetchone()
 
@@ -44,16 +44,16 @@ def addKategori(namaKategori):
     finally:
         cursor.close()
 
-def deleteKategori(id):
+def deleteKategori(idk):
     try:
         query = f"""
         DELETE FROM kategori
-        WHERE IDKategori = {id}
+        WHERE IDKategori = {idk}
         """
         
         cursor.execute(query)
         myDB.commit()
-        print(f"Data kategori dengan id {id} berhasil di hapus")
+        print(f"Data kategori dengan id {idk} berhasil di hapus")
         
     except mysql.connector.Error as err:
         print(f"Error delete kategori: {err}")
@@ -63,21 +63,37 @@ def deleteKategori(id):
         cursor.close()
 
 
-def updateKategori(id, nama):
+def updateKategori(idK, nama):
     try:
-        query = f"""
+        query = """
         UPDATE kategori
-        SET nama_kategori = {nama}
-        WHERE IDKategori = {id}
+        SET nama_kategori = %s
+        WHERE IDKategori = %s
         """
-        cursor.execute(query)
+        value = (nama, idK)
+        
+        cursor.execute(query, value)
         myDB.commit()
         
-        print(f"Data dengan id {id} berhasil di update")
+        print(f"Data dengan id {idK} berhasil di update")
         
     except mysql.connector.Error as err:
-        print(f"Error updating kategori where id {id} err: {err}")
+        print(f"Error updating kategori where id {idK} err: {err}")
         myDB.rollback()
-        
-    finally:
-        cursor.close()
+
+def searchKategori(val, key):
+    kategori = showAllKategori()
+
+    mathcingKategori = [items for items in kategori if items[key] == val]
+
+    if mathcingKategori:
+        print("Kategori found:")
+        for items in mathcingKategori:
+            print(f"""
+                  ID kategori   : {items['IDKategori']}
+                  Nama Kategori : {items['nama_kategori']}
+                  """)
+            return mathcingKategori
+    else:
+        print("Data yang dicari tidak ada")
+        return None
