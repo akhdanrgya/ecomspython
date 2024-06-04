@@ -14,7 +14,7 @@ def searchProductMenu():
             4. Back
             5. Exit
             """)
-                
+            
         pilih = int(input("Masukan pilihan: "))
         if pilih == 1:
             search = input("Masukan nama produk yang ingin di cari: ")
@@ -158,7 +158,45 @@ def productMenu():
             print(f"Menu pilihan {pilih} tidak tersedia.")
 
 def searchTransaction():
-    print("search")
+    while True:
+        print("""
+              <<< Search Data Transaction >>>
+              1. Search By ID
+              2. Search Product Transaction
+              3. Search Jumlah product Transaction
+              4. Search Total Harga
+              5. Back
+              6. Exit
+              """)
+        
+        pilih = int(input("Masukan pilihan: "))
+
+        if pilih == 1:
+            search = int(input("Masukan ID transaction yang ingin di cari: "))
+            searchTransactions("IDTransaksi", search)
+            
+        elif pilih == 2:
+            search = input("Masukan nama product transaksi yang ingin di cari: ")
+            searchTransactions("Nama Product", search)
+            
+        elif pilih == 3:
+            search = int(input("Masukan jumlah transaksi yang ingin di cari: "))
+            searchTransactions("Jumlah", search)
+            
+        elif pilih == 4:
+            search = int(input("Masukan total harga transaksi yang ingin di cari: "))
+            searchTransactions("Total Harga", search)
+
+        elif pilih == 5:
+            break
+        
+        elif pilih == 6:
+            print("Terimakasih sudah menggunakan aplikasi ini")
+            exit()
+            
+        else:
+            print("Pilihan tidak tersedia")
+        
 
 def dataTransaction():
     while True:
@@ -183,6 +221,11 @@ def dataTransaction():
                 Jumlah        : {items['Jumlah']}
                 Total Harga   : {items['Total Harga']}
                 """)
+        
+        elif pilih == 2 :
+            searchTransaction()
+        else :
+            print(f"Menu pilihan {pilih} tidak tersedia")
 
 def main():
     while True:

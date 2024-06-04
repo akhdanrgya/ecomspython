@@ -80,3 +80,20 @@ def showTransaction():
     
     except mysql.connector.Error as err:
         print(f"Error : {err}")
+
+def searchTransactions(key, val):
+    transaction = showTransaction()
+    matchingTransaction = [items for items in transaction if items[key] == val]
+
+    if matchingTransaction:
+        print("Transaction found:")
+        for items in matchingTransaction:
+            print(f"""
+            ID Transaction      : {items['IDTransaksi']}
+            Nama Product        : {items['Nama Product']}
+            Jumlah              : {items['Jumlah']}
+            Total Harga         : {items['Total Harga']}
+            """)
+        return matchingTransaction
+    else:
+        print("Product not found.")
