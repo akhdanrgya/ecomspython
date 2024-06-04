@@ -202,10 +202,10 @@ def searchProduct(value, key):
     else:
         print("Product not found.")
 
-def searchProductsByQuantity(quantity):
+def searchProduct2(val, key):
     products = showAllProduct2()
     
-    matching_products = [product for product in products if product['quantity'] == quantity]
+    matching_products = [product for product in products if product[key] == val]
     
     if matching_products:
         print("Products found:")
@@ -222,26 +222,4 @@ def searchProductsByQuantity(quantity):
         return matching_products
     else:
         print("No products found with the specified quantity.")
-        return None
-
-def searchProductsByID(ProdID):
-    products = showAllProduct2()
-    
-    matching_products = [product for product in products if product['IDProduct'] == ProdID]
-    
-    if matching_products:
-        print("Products found:")
-        for product in matching_products:
-            print(f"""
-            ID Product    : {product['IDProduct']}
-            ID Kategori   : {product['IDKategori']}
-            Nama Product  : {product['nama_produk']}
-            Harga         : {product['harga']}
-            Deskripsi     : {product['deskripsi']}
-            Gambar        : {product['img']}
-            Quantity      : {product['quantity']}
-            """)
-        return matching_products
-    else:
-        print("Data yang dicari tidak ada.")
         return None
