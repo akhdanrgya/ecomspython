@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import random
 from libs.kategoriController import *
 from libs.transactionController import *
+from libs.productController import *
 
 def generate_random_colors(num_colors):
     colors = []
@@ -54,3 +55,27 @@ def plotKategoriTerjual():
     ax.legend(title='Kategori')
 
     plt.show()
+
+def plotKetersediaanProduk():
+    produkData = showAllProduct2()
+    
+    if not produkData:
+        print("Tidak ada data")
+        return
+    
+    namaProduk = [item['nama_produk'] for item in produkData]
+    jumlahProduk = [item['quantity'] for item in produkData]
+    bar_colors = generate_random_colors(len(namaProduk))
+
+    fig, ax = plt.subplots()
+
+    ax.bar(namaProduk, jumlahProduk, label=namaProduk, color=bar_colors)
+
+    ax.set_xlabel('Nama Produk')
+    ax.set_ylabel('Jumlah Produk Tersedia')
+    ax.set_title('Statistik Jumlah Produk Tersedia')
+    ax.legend(title='Product Quantity')
+
+    plt.show()
+
+plotKetersediaanProduk()

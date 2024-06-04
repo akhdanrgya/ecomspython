@@ -359,7 +359,7 @@ def statistikMenu():
           <<< Menu Statistik >>>
           1. Data Pembelian Berdasarkan Kategori
           2. Data Pembelian Produk Yang Habis Berdasarkan kategori
-          3.
+          3. Data Produk Yang Tersedia
           4.
           """)
     
@@ -370,6 +370,9 @@ def statistikMenu():
     
     elif pilih == 2:
         plotKategoriTerjual()
+    
+    elif pilih == 3:
+        plotKetersediaanProduk()
 
 def main():
     while True:
