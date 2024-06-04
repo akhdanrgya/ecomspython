@@ -353,6 +353,9 @@ def kategoriMenu():
         else:
             print(f"Menu pilihan {pilih} tidak tersedia")
 
+def statistik():
+    print("Stat")
+
 def main():
     while True:
         print("""
@@ -374,7 +377,7 @@ def main():
         elif pilih == 3 :
             kategoriMenu()
         elif pilih == 4 :
-            print("4")
+            statistik()
         elif pilih == 5 :
             app = App()
             app.mainloop()
