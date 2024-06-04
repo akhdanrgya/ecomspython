@@ -360,7 +360,7 @@ def statistikMenu():
           1. Data Pembelian Berdasarkan Kategori
           2. Data Pembelian Produk Yang Habis Berdasarkan kategori
           3. Data Produk Yang Tersedia
-          4.
+          4. Data Keuntungan Berdasarkan Kategori
           """)
     
     pilih = int(input("Masukan pilihan: "))
@@ -373,6 +373,9 @@ def statistikMenu():
     
     elif pilih == 3:
         plotKetersediaanProduk()
+    
+    elif pilih == 4:
+        plotKeuntungan()
 
 def main():
     while True:

@@ -124,3 +124,17 @@ def showJumlahYangHabis():
     cursor.execute(query)
     results = cursor.fetchall()
     return results
+
+
+def showKeuntunganPerKategori():
+    query = """
+    SELECT k.nama_kategori, SUM(t.total_harga) as keuntungan
+    FROM kategori k
+    LEFT JOIN product p ON k.IDKategori = p.IDKategori
+    LEFT JOIN transaksi t ON p.IDProduct = t.IDProduct
+    GROUP BY k.nama_kategori
+    """
+    cursor = myDB.cursor(dictionary=True)
+    cursor.execute(query)
+    results = cursor.fetchall()
+    return results

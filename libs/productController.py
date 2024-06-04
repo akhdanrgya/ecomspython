@@ -38,7 +38,7 @@ def deleteProduct(id):
     except mysql.connector.Error as err:
         print(f"Error deleting product: {err}")
         myDB.rollback()
-        
+
 
 
 def updateProduct(idp, IDkategori, nama, harga, desk, img, q):
@@ -55,6 +55,7 @@ def updateProduct(idp, IDkategori, nama, harga, desk, img, q):
     except mysql.connector.Error as err:
         print(f"Error updating Product where id : {idp} err : {err}")
         myDB.rollback()
+
 
 def dynamicUpdateProduct(idp, IDkategori, nama, harga, desk, img, q):
     try:

@@ -78,4 +78,26 @@ def plotKetersediaanProduk():
 
     plt.show()
 
-plotKetersediaanProduk()
+def plotKeuntungan():
+    keuntungan_data = showKeuntunganPerKategori()
+    
+    if not keuntungan_data:
+        print("Tidak ada data keuntungan untuk kategori apapun.")
+        return
+    
+    namaKategori = [item['nama_kategori'] for item in keuntungan_data]
+    total_keuntungan = [item['keuntungan'] for item in keuntungan_data]
+    bar_colors = generate_random_colors(len(namaKategori))
+
+    fig, ax = plt.subplots()
+
+    ax.bar(namaKategori, total_keuntungan, label=namaKategori, color=bar_colors)
+
+    ax.set_xlabel('Kategori')
+    ax.set_ylabel('Keuntungan (Rp)')
+    ax.set_title('Statistik Keuntungan Berbagai Kategori Produk')
+    ax.legend(title='Kategori')
+
+    plt.show()
+
+plotKeuntungan()
