@@ -196,7 +196,7 @@ def searchTransaction():
             
         else:
             print("Pilihan tidak tersedia")
-        
+
 
 def dataTransaction():
     while True:
