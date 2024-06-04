@@ -197,7 +197,6 @@ def searchTransaction():
         else:
             print("Pilihan tidak tersedia")
 
-
 def dataTransaction():
     while True:
         print("""
@@ -355,27 +354,38 @@ def kategoriMenu():
             print(f"Menu pilihan {pilih} tidak tersedia")
 
 def statistikMenu():
-    print("""
-          <<< Menu Statistik >>>
-          1. Data Pembelian Berdasarkan Kategori
-          2. Data Pembelian Produk Yang Habis Berdasarkan kategori
-          3. Data Produk Yang Tersedia
-          4. Data Keuntungan Berdasarkan Kategori
-          """)
-    
-    pilih = int(input("Masukan pilihan: "))
+    while True:
+        print("""
+            <<< Menu Statistik >>>
+            1. Data Pembelian Berdasarkan Kategori
+            2. Data Pembelian Produk Yang Habis Berdasarkan kategori
+            3. Data Produk Yang Tersedia
+            4. Data Keuntungan Berdasarkan Kategori
+            5. Back
+            6. Exit
+            """)
+        
+        pilih = int(input("Masukan pilihan: "))
 
-    if pilih == 1:
-        pembelianKategori()
+        if pilih == 1:
+            pembelianKategori()
+        
+        elif pilih == 2:
+            plotKategoriTerjual()
+        
+        elif pilih == 3:
+            plotKetersediaanProduk()
+        
+        elif pilih == 4:
+            plotKeuntungan()
+        
+        elif pilih == 5:
+            break
+        
+        elif pilih == 6:
+            print("Terimakasih sudah menggunakan aplikasi ini")
+            exit()
     
-    elif pilih == 2:
-        plotKategoriTerjual()
-    
-    elif pilih == 3:
-        plotKetersediaanProduk()
-    
-    elif pilih == 4:
-        plotKeuntungan()
 
 def main():
     while True:
