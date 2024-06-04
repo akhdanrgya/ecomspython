@@ -41,8 +41,7 @@ def addKategori(namaKategori):
         print(f"Error: {err}")
         myDB.rollback()
         
-    finally:
-        cursor.close()
+
 
 def deleteKategori(idk):
     try:
@@ -58,9 +57,6 @@ def deleteKategori(idk):
     except mysql.connector.Error as err:
         print(f"Error delete kategori: {err}")
         myDB.rollback()
-        
-    finally:
-        cursor.close()
 
 
 def updateKategori(idK, nama):

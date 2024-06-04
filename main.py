@@ -1,8 +1,8 @@
 from libs.kategoriController import *
 from libs.productController import *
 from libs.transactionController import *
-from components.statistik import *
-from components.ecom import App
+from statistik import *
+from ecom import App
 
 def searchProductMenu():
     while True:
@@ -220,6 +220,7 @@ def dataTransaction():
                 Nama Product  : {items['Nama Product']}
                 Jumlah        : {items['Jumlah']}
                 Total Harga   : {items['Total Harga']}
+                ID Kategori   : {items['IDKategori']}
                 """)
         
         elif pilih == 2 :
@@ -353,6 +354,19 @@ def kategoriMenu():
         else:
             print(f"Menu pilihan {pilih} tidak tersedia")
 
+def statistikMenu():
+    print("""
+          <<< Menu Statistik >>>
+          1. Data Pembelian Berdasarkan Kategori
+          2.
+          3.
+          4.
+          """)
+    
+    pilih = int(input("Masukan pilihan: "))
+
+    if pilih == 1:
+        pembelianKategori()
 
 def main():
     while True:

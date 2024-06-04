@@ -22,5 +22,6 @@ CREATE TABLE transaksi(
 	IDTransaksi INT PRIMARY KEY auto_increment,
     IDProduct INT,
     jumlah INT,
-    total_harga INT
+    total_harga INT,
+    IDKategori INT
 );

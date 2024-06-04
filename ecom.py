@@ -46,7 +46,7 @@ class App(customtkinter.CTk):
         content_frame.grid_columnconfigure((0, 1, 2, 3), weight=1)
         content_frame.grid_rowconfigure((0, 1), weight=1)
 
-        def create_product_frame(parent, row, col, nama, harga, IDProd):
+        def create_product_frame(parent, row, col, nama, harga, IDProd, idKategori):
             product_frame = customtkinter.CTkFrame(parent, bg_color="#FFFFFF", corner_radius=10)
             product_frame.grid(row=row, column=col, padx=5, pady=5, sticky="nsew")
             
@@ -63,7 +63,7 @@ class App(customtkinter.CTk):
                     response = tkinter.messagebox.askokcancel("Konfirmasi Pembelian", f"Anda akan membeli {quantity} produk {nama_produk} dengan total pembayaran Rp. {total_pembayaran}. Lanjutkan?")
                     if response:
                         print(f"Anda telah membeli {quantity} produk {nama_produk} dengan total pembayaran Rp. {total_pembayaran}")
-                        buy(IDProd, quantity, total_pembayaran)
+                        buy(IDProd, quantity, total_pembayaran, idKategori)
                     else:
                         print("Pembelian dibatalkan")
 
@@ -78,7 +78,8 @@ class App(customtkinter.CTk):
             nama = prod['nama_produk']
             harga = prod['harga']
             idprod = prod['IDProduct']
-            create_product_frame(content_frame, row, col, nama, harga, idprod)
+            idKategori = prod['IDKategori']
+            create_product_frame(content_frame, row, col, nama, harga, idprod, idKategori)
     
     def on_close(self):
         self.destroy()

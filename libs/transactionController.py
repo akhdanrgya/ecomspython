@@ -41,9 +41,9 @@ def afterTransaction(IDProduct, q):
     
     kurangQuantity(IDProduct, final)
 
-def buy(product, q, total):
-    queryInsert = "INSERT INTO transaksi(IDProduct, jumlah, total_harga) VALUES (%s, %s, %s)"
-    values = (product, q, total)
+def buy(product, q, total, kategori):
+    queryInsert = "INSERT INTO transaksi(IDProduct, jumlah, total_harga, IDKategori) VALUES (%s, %s, %s, %s)"
+    values = (product, q, total, kategori)
 
     # buat debugging jadi tau apa yang error
     try:
@@ -58,7 +58,7 @@ def buy(product, q, total):
 
 def showTransaction():
     query = """
-    SELECT transaksi.IDTransaksi, product.nama_produk, transaksi.jumlah, transaksi.total_harga
+    SELECT transaksi.IDTransaksi, product.nama_produk, transaksi.jumlah, transaksi.total_harga, transaksi.IDKategori
     FROM transaksi
     LEFT JOIN product ON transaksi.IDProduct = product.IDProduct;
     """
@@ -72,7 +72,8 @@ def showTransaction():
                 'IDTransaksi' : items[0],
                 'Nama Product' : items[1],
                 'Jumlah' : items[2],
-                'Total Harga' : items[3]
+                'Total Harga' : items[3],
+                'IDKategori' : items[4]
             }
             transaksiDict.append(val)
         
@@ -93,7 +94,20 @@ def searchTransactions(key, val):
             Nama Product        : {items['Nama Product']}
             Jumlah              : {items['Jumlah']}
             Total Harga         : {items['Total Harga']}
+            ID Kategori         : {items['IDKategori']}
             """)
         return matchingTransaction
     else:
         print("Product not found.")
+
+def showKategoriTransaksiCounts():
+    query = """
+    SELECT k.nama_kategori, COUNT(t.IDTransaksi) as jumlah_transaksi
+    FROM kategori k
+    LEFT JOIN transaksi t ON k.IDKategori = t.IDKategori
+    GROUP BY k.nama_kategori
+    """
+    cursor = myDB.cursor(dictionary=True)
+    cursor.execute(query)
+    results = cursor.fetchall()
+    return results
