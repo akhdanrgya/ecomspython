@@ -99,5 +99,3 @@ def plotKeuntungan():
     ax.legend(title='Kategori')
 
     plt.show()
-
-plotKeuntungan()
