@@ -111,3 +111,16 @@ def showKategoriTransaksiCounts():
     cursor.execute(query)
     results = cursor.fetchall()
     return results
+
+def showJumlahYangHabis():
+    query = """
+    SELECT k.nama_kategori, COUNT(t.IDTransaksi) as jumlah_transaksi, SUM(t.jumlah) as total_terjual
+    FROM kategori k
+    LEFT JOIN transaksi t ON k.IDKategori = t.IDKategori
+    WHERE t.jumlah > 0
+    GROUP BY k.nama_kategori
+    """
+    cursor = myDB.cursor(dictionary=True)
+    cursor.execute(query)
+    results = cursor.fetchall()
+    return results

@@ -33,3 +33,24 @@ def pembelianKategori():
 
     plt.show()
 
+def plotKategoriTerjual():
+    kategori_data = showJumlahYangHabis()
+    
+    if not kategori_data:
+        print("Tidak ada kategori dengan jumlah terjual.")
+        return
+    
+    namaKategori = [item['nama_kategori'] for item in kategori_data]
+    total_terjual = [item['total_terjual'] for item in kategori_data]
+    bar_colors = generate_random_colors(len(namaKategori))
+
+    fig, ax = plt.subplots()
+
+    ax.bar(namaKategori, total_terjual, label=namaKategori, color=bar_colors)
+
+    ax.set_xlabel('Kategori')
+    ax.set_ylabel('Jumlah Produk Terjual')
+    ax.set_title('Statistik Kategori Produk dengan Penjualan')
+    ax.legend(title='Kategori')
+
+    plt.show()
