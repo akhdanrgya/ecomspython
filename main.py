@@ -1,8 +1,8 @@
 from libs.kategoriController import *
 from libs.productController import *
 from libs.transactionController import *
-import matplotlib as plt
-from ecom import App
+from components.statistik import *
+from components.ecom import App
 
 def searchProductMenu():
     while True:
@@ -353,8 +353,6 @@ def kategoriMenu():
         else:
             print(f"Menu pilihan {pilih} tidak tersedia")
 
-def statistik():
-    print("Stat")
 
 def main():
     while True:
@@ -377,7 +375,7 @@ def main():
         elif pilih == 3 :
             kategoriMenu()
         elif pilih == 4 :
-            statistik()
+            statistikMenu()
         elif pilih == 5 :
             app = App()
             app.mainloop()
