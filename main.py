@@ -224,6 +224,13 @@ def dataTransaction():
         
         elif pilih == 2 :
             searchTransaction()
+        
+        elif pilih == 3 :
+            break
+        
+        elif pilih == 4 :
+            print("Terimakasih sudah menggunakan aplikasi ini")
+            exit()
         else :
             print(f"Menu pilihan {pilih} tidak tersedia")
 
