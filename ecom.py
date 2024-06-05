@@ -72,11 +72,11 @@ class App(customtkinter.CTk):
             
             # Load and display image
             img = Image.open(imgP)
-            img = img.resize((150, 150), Image.LANCZOS)
+            img = img.resize((300, 300), Image.LANCZOS)
             img = ImageTk.PhotoImage(img)
             img_label = customtkinter.CTkLabel(product_frame, image=img)
             img_label.image = img
-            img_label.pack(side="top", padx=10, pady=10)
+            img_label.pack(expand = True)
             
             nama_produk = customtkinter.CTkLabel(product_frame, text=f"{nama}", font=("ArchivoBlack Regular", 24), text_color="#000000", bg_color="#FFFFFF")
             nama_produk.pack(side="bottom", anchor="w", padx=10, pady=10)
@@ -112,28 +112,18 @@ class App(customtkinter.CTk):
         self.destroy()
         
     def uploadImage(self):
-        # Memilih gambar menggunakan file dialog
         file_path = filedialog.askopenfilename(initialdir=os.getcwd(), title="Select Image", filetypes=(("Image files", "*.jpg *.jpeg *.png *.gif"), ("All files", "*.*")))
         
-        # Mengecek apakah pengguna telah memilih gambar
         if file_path:
-            # Menentukan path tujuan untuk menyimpan gambar
             destination_folder = os.path.join(os.getcwd(), "image")
             
-            # Mengecek apakah folder image sudah ada, jika tidak, maka akan dibuat
             if not os.path.exists(destination_folder):
                 os.makedirs(destination_folder)
 
-            # Mengekstrak nama file dari path lengkap
             file_name = os.path.basename(file_path)
 
-            # Menentukan path lengkap untuk file tujuan
             destination_path = os.path.join(destination_folder, file_name)
-
-            # Menyalin gambar ke folder image
             shutil.copy(file_path, destination_path)
-
-            # Mengembalikan path lengkap file yang disalin
             return destination_path
 
 if __name__ == "__main__":

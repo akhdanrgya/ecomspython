@@ -78,7 +78,6 @@ def productMenu():
                 inputHargaProduk = int(input("Masukan harga produk: "))
                 inputDeskripsi = input("Masukan deskripsi produk (optional) : ")
 
-                # Meminta pengguna untuk memilih gambar
                 print("Silahkan pilih gambar untuk produk:")
                 inputIMG = app.uploadImage()
 
