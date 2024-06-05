@@ -121,7 +121,7 @@ def productMenu():
                     harga = int(harga)
                 if q:
                     q = int(q)
-                
+
 
                 updateProduct(update, IDkategori, nama, harga, desk, img, q)
             

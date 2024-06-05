@@ -19,6 +19,8 @@ class App(customtkinter.CTk):
         self.content = customtkinter.CTkFrame(self, fg_color="white")
         self.content.pack(side="right", fill="both", expand=True)
         
+        self.products = showAllProduct2()
+        
         self.displayEcom()
         
     def displayEcom(self):
@@ -27,7 +29,7 @@ class App(customtkinter.CTk):
         header_frame.pack_propagate(False)
 
         search_entry = customtkinter.CTkEntry(header_frame, font=("ArchivoBlack Regular", 40), bg_color="#FFFFFF", fg_color="#ffffff", placeholder_text="Search", placeholder_text_color="#808080")
-        search_entry.pack(side="left", padx=10, fill="x", expand = True)
+        search_entry.pack(side="left", padx=10, fill="x", expand=True)
 
         kategori_frame = customtkinter.CTkFrame(self.content, bg_color="#CFD7EB")
         kategori_frame.pack(fill="x", padx=10)
@@ -35,12 +37,27 @@ class App(customtkinter.CTk):
 
         kategori_colors = "#406DE0"
         kategori = showAllKategori()
+        btn = customtkinter.CTkButton(kategori_frame, text="All", command=self.allProduct, font=("ArchivoBlack Regular", 30), fg_color=kategori_colors, text_color="#FFFFFF")
+        btn.grid(row=0, column=0, padx=5, pady=10, sticky="nsew")
 
-        for idx,kat in enumerate(kategori):
+        for idx, kat in enumerate(kategori):
             namaKategori = kat["nama_kategori"]
-            btn = customtkinter.CTkButton(kategori_frame, text=namaKategori, font=("ArchivoBlack Regular", 30), fg_color=kategori_colors, text_color="#FFFFFF")
-            btn.grid(row=0, column=idx, padx=5, pady=10, sticky="nsew")
+            idKategori = kat["IDKategori"]
+            btn = customtkinter.CTkButton(kategori_frame, text=namaKategori, command=lambda id_kat=idKategori: self.filterProductByKategori(id_kat), font=("ArchivoBlack Regular", 30), fg_color=kategori_colors, text_color="#FFFFFF")
+            btn.grid(row=0, column=idx + 1, padx=5, pady=10, sticky="nsew")
 
+    def allProduct(self):
+        self.displayProducts(self.products)
+
+    def filterProductByKategori(self, idKategori):
+        filtered_products = list(filter(lambda x: x['IDKategori'] == idKategori, self.products))
+        self.displayProducts(filtered_products)
+
+    def displayProducts(self, products):
+        for widget in self.content.winfo_children():
+            if isinstance(widget, customtkinter.CTkFrame) and widget not in self.content.winfo_children()[:2]:
+                widget.destroy()
+        
         content_frame = customtkinter.CTkFrame(self.content, bg_color="#CFD7EB")
         content_frame.pack(fill="both", expand=True, padx=10, pady=10)
         content_frame.grid_columnconfigure((0, 1, 2, 3), weight=1)
@@ -70,8 +87,6 @@ class App(customtkinter.CTk):
             btn_beli = customtkinter.CTkButton(product_frame, text="BUY", fg_color="#406DE0", width=20, height=20)
             btn_beli.configure(command=lambda nama=nama, harga=harga: buy_action(nama, harga))
             btn_beli.pack(side="bottom", anchor="e", padx=10, pady=10)
-
-        products = showAllProduct2()
 
         positions = [(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (1, 1), (1, 2), (1, 3)]
         for (row, col), prod in zip(positions, products):
