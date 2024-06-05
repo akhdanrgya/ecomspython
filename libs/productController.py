@@ -1,4 +1,6 @@
 import mysql.connector
+from tkinter import filedialog
+import os
 
 myDB = mysql.connector.connect(
     user = "root",
@@ -224,3 +226,4 @@ def searchProduct2(val, key):
     else:
         print("No products found with the specified quantity.")
         return None
+

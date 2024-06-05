@@ -4,6 +4,8 @@ from libs.transactionController import *
 from statistik import *
 from ecom import App
 
+app = App()
+
 def searchProductMenu():
     while True:
         print("""
@@ -75,7 +77,11 @@ def productMenu():
                 inputNamaProduk = input("Masukan nama produk: ") 
                 inputHargaProduk = int(input("Masukan harga produk: "))
                 inputDeskripsi = input("Masukan deskripsi produk (optional) : ")
-                inputIMG = input("Masukan url gambar produk: ")
+
+                # Meminta pengguna untuk memilih gambar
+                print("Silahkan pilih gambar untuk produk:")
+                inputIMG = app.uploadImage()
+
                 inputQuantity = int(input("Masukan jumlah quantity produk: "))
                 
                 addProduct(inputKategori, inputNamaProduk, inputHargaProduk, inputDeskripsi, inputIMG, inputQuantity)
@@ -410,7 +416,6 @@ def main():
         elif pilih == 4 :
             statistikMenu()
         elif pilih == 5 :
-            app = App()
             app.mainloop()
             break
         elif pilih == 6 :
