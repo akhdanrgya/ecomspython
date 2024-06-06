@@ -5,28 +5,28 @@ from libs.transactionController import *
 from libs.productController import *
 
 def generate_random_colors(num_colors):
-    colors = []
+    colors_0501 = []
     for _ in range(num_colors):
         r = random.randint(0, 255) / 255
         g = random.randint(0, 255) / 255
         b = random.randint(0, 255) / 255
-        colors.append((r, g, b))
-    return colors
+        colors_0501.append((r, g, b))
+    return colors_0501
 
 def pembelianKategori():
-    kategori_data = showKategoriTransaksiCounts()
+    kategori_data_0501 = showKategoriTransaksiCounts()
     
-    namaKategori = [item['nama_kategori'] for item in kategori_data]
-    counts = [item['jumlah_transaksi'] for item in kategori_data]
+    namaKategori_0501 = [item['nama_kategori'] for item in kategori_data_0501]
+    counts_0501 = [item['jumlah_transaksi'] for item in kategori_data_0501]
     
-    base_colors = generate_random_colors(len(namaKategori))
-    bar_colors = (base_colors * ((len(namaKategori) // len(base_colors)) + 1))[:len(namaKategori)]
+    base_colors_0501 = generate_random_colors(len(namaKategori_0501))
+    bar_colors_0501 = (base_colors_0501 * ((len(namaKategori_0501) // len(base_colors_0501)) + 1))[:len(namaKategori_0501)]
     
     fig, ax = plt.subplots()
 
-    bar_labels = namaKategori
+    bar_labels_0501 = namaKategori_0501
 
-    ax.bar(namaKategori, counts, label=bar_labels, color=bar_colors)
+    ax.bar(namaKategori_0501, counts_0501, label=bar_labels_0501, color=bar_colors_0501)
 
     ax.set_ylabel('Jumlah Transaksi')
     ax.set_title('Statistik Transaksi Berdasarkan Kategori Produk')
@@ -35,19 +35,19 @@ def pembelianKategori():
     plt.show()
 
 def plotKategoriTerjual():
-    kategori_data = showJumlahYangHabis()
+    kategori_data_0501 = showJumlahYangHabis()
     
-    if not kategori_data:
+    if not kategori_data_0501:
         print("Tidak ada kategori dengan jumlah terjual.")
         return
     
-    namaKategori = [item['nama_kategori'] for item in kategori_data]
-    total_terjual = [item['total_terjual'] for item in kategori_data]
-    bar_colors = generate_random_colors(len(namaKategori))
+    namaKategori_0501 = [item['nama_kategori'] for item in kategori_data_0501]
+    total_terjual_0501 = [item['total_terjual'] for item in kategori_data_0501]
+    bar_colors_0501 = generate_random_colors(len(namaKategori_0501))
 
     fig, ax = plt.subplots()
 
-    ax.bar(namaKategori, total_terjual, label=namaKategori, color=bar_colors)
+    ax.bar(namaKategori_0501, total_terjual_0501, label=namaKategori_0501, color=bar_colors_0501)
 
     ax.set_xlabel('Kategori')
     ax.set_ylabel('Jumlah Produk Terjual')
@@ -57,19 +57,19 @@ def plotKategoriTerjual():
     plt.show()
 
 def plotKetersediaanProduk():
-    produkData = showAllProduct2()
+    produkData_0501 = showAllProduct2()
     
-    if not produkData:
+    if not produkData_0501:
         print("Tidak ada data")
         return
     
-    namaProduk = [item['nama_produk'] for item in produkData]
-    jumlahProduk = [item['quantity'] for item in produkData]
-    bar_colors = generate_random_colors(len(namaProduk))
+    namaProduk_0501 = [item['nama_produk'] for item in produkData_0501]
+    jumlahProduk_0501 = [item['quantity'] for item in produkData_0501]
+    bar_colors_0501 = generate_random_colors(len(namaProduk_0501))
 
     fig, ax = plt.subplots()
 
-    ax.bar(namaProduk, jumlahProduk, label=namaProduk, color=bar_colors)
+    ax.bar(namaProduk_0501, jumlahProduk_0501, label=namaProduk_0501, color=bar_colors_0501)
 
     ax.set_xlabel('Nama Produk')
     ax.set_ylabel('Jumlah Produk Tersedia')
@@ -79,19 +79,19 @@ def plotKetersediaanProduk():
     plt.show()
 
 def plotKeuntungan():
-    keuntungan_data = showKeuntunganPerKategori()
+    keuntungan_data_0501 = showKeuntunganPerKategori()
     
-    if not keuntungan_data:
+    if not keuntungan_data_0501:
         print("Tidak ada data keuntungan untuk kategori apapun.")
         return
     
-    namaKategori = [item['nama_kategori'] for item in keuntungan_data]
-    total_keuntungan = [item['keuntungan'] for item in keuntungan_data]
-    bar_colors = generate_random_colors(len(namaKategori))
+    namaKategori_0501 = [item['nama_kategori'] for item in keuntungan_data_0501]
+    total_keuntungan_0501 = [item['keuntungan'] for item in keuntungan_data_0501]
+    bar_colors_0501 = generate_random_colors(len(namaKategori_0501))
 
     fig, ax = plt.subplots()
 
-    ax.bar(namaKategori, total_keuntungan, label=namaKategori, color=bar_colors)
+    ax.bar(namaKategori_0501, total_keuntungan_0501, label=namaKategori_0501, color=bar_colors_0501)
 
     ax.set_xlabel('Kategori')
     ax.set_ylabel('Keuntungan (Rp)')

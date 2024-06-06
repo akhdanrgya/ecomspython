@@ -1,10 +1,28 @@
+"""
+
+
+KELAS               : SI 23 05
+KELOMPOK            : 01
+ANGGOTA KELOMPOK    :
+
+Akhdan Anargya Arisadi  (102042300077)
+Calista Queena Rumampuk (102042300073)
+Ismiati Andini          (102042300056)
+Salwa Fadiyah           (102042300052)
+
+
+"""
+
+
+
+
 from libs.kategoriController import *
 from libs.productController import *
 from libs.transactionController import *
 from statistik import *
 from ecom import App
 
-app = App()
+app_0501 = App()
 
 def searchProductMenu():
     while True:
@@ -17,23 +35,23 @@ def searchProductMenu():
             5. Exit
             """)
             
-        pilih = int(input("Masukan pilihan: "))
-        if pilih == 1:
+        pilih_0501 = int(input("Masukan pilihan: "))
+        if pilih_0501 == 1:
             search = input("Masukan nama produk yang ingin di cari: ")
             searchProduct(search, "nama_produk")
         
-        elif pilih == 2:
+        elif pilih_0501 == 2:
             search = int(input("Masukan id produk yang ingin di cari: "))
             searchProduct2(search, "IDProduct")
         
-        elif pilih == 3:
+        elif pilih_0501 == 3:
             search = int(input("Masukan quantity product yang ingin di cari: "))
             searchProduct2(search, "quantity")
         
-        elif pilih == 4:
+        elif pilih_0501 == 4:
             break
         
-        elif pilih == 5:
+        elif pilih_0501 == 5:
             print("Terimakasih sudah menggunakan aplikasi ini")
             exit()
 
@@ -50,115 +68,115 @@ def productMenu():
               7. Exit
               """)
         
-        pilih = int(input("Masukan Pilihan: "))
+        pilih_0501 = int(input("Masukan Pilihan: "))
         
-        if pilih == 1:
-            product = showAllProduct2()
+        if pilih_0501 == 1:
+            product_0501 = showAllProduct2()
             
-            for i, items in enumerate(product):
+            for i, items_0501 in enumerate(product_0501):
                 print(f"""
                 No. {i + 1}
-                ID Product    : {items['IDProduct']}
-                ID Kategori   : {items['IDKategori']}
-                Nama Product  : {items['nama_produk']}
-                Harga         : {items['harga']}
-                Deskripsi     : {items['deskripsi']}
-                Gambar        : {items['img']}
-                Quantity      : {items['quantity']}
+                ID Product    : {items_0501['IDProduct']}
+                ID Kategori   : {items_0501['IDKategori']}
+                Nama Product  : {items_0501['nama_produk']}
+                Harga         : {items_0501['harga']}
+                Deskripsi     : {items_0501['deskripsi']}
+                Gambar        : {items_0501['img']}
+                Quantity      : {items_0501['quantity']}
                       """)
                 
                 
-        elif pilih == 2 :
+        elif pilih_0501 == 2 :
             try:
-                kategori = showAllKategori()
-                for items in kategori:
-                    print(f"Kategori {items['nama_kategori']} dengan angka {items['IDKategori']}")
-                inputKategori = int(input("\nMasukan angka kategori product: "))
-                inputNamaProduk = input("Masukan nama produk: ") 
-                inputHargaProduk = int(input("Masukan harga produk: "))
-                inputDeskripsi = input("Masukan deskripsi produk (optional) : ")
+                kategori_0501 = showAllKategori()
+                for items_0501 in kategori_0501:
+                    print(f"Kategori {items_0501['nama_kategori']} dengan angka {items_0501['IDKategori']}")
+                inputKategori_0501 = int(input("\nMasukan angka kategori product: "))
+                inputNamaProduk_0501 = input("Masukan nama produk: ") 
+                inputHargaProduk_0501 = int(input("Masukan harga produk: "))
+                inputDeskripsi_0501 = input("Masukan deskripsi produk (optional) : ")
 
                 print("Silahkan pilih gambar untuk produk:")
-                inputIMG = app.uploadImage()
+                inputIMG_0501 = app_0501.uploadImage()
 
-                inputQuantity = int(input("Masukan jumlah quantity produk: "))
+                inputQuantity_0501 = int(input("Masukan jumlah quantity produk: "))
                 
-                addProduct(inputKategori, inputNamaProduk, inputHargaProduk, inputDeskripsi, inputIMG, inputQuantity)
+                addProduct(inputKategori_0501, inputNamaProduk_0501, inputHargaProduk_0501, inputDeskripsi_0501, inputIMG_0501, inputQuantity_0501)
             except Exception as err:
                 print(f"Silahkan input dengan benar: {err}")
 
-        elif pilih == 3 :
+        elif pilih_0501 == 3 :
             try:
-                product = showAllProduct2()
-                for i, items in enumerate(product):
+                product_0501 = showAllProduct2()
+                for i, items_0501 in enumerate(product_0501):
                     print(f"""
                     No. {i + 1}
-                    ID Product    : {items['IDProduct']}
-                    ID Kategori   : {items['IDKategori']}
-                    Nama Product  : {items['nama_produk']}
-                    Harga         : {items['harga']}
-                    Deskripsi     : {items['deskripsi']}
-                    Gambar        : {items['img']}
-                    Quantity      : {items['quantity']}
+                    ID Product    : {items_0501['IDProduct']}
+                    ID Kategori   : {items_0501['IDKategori']}
+                    Nama Product  : {items_0501['nama_produk']}
+                    Harga         : {items_0501['harga']}
+                    Deskripsi     : {items_0501['deskripsi']}
+                    Gambar        : {items_0501['img']}
+                    Quantity      : {items_0501['quantity']}
                     """)
                 
-                update = int(input("Masukan ID product yang akan di update: "))
-                selected_product = None
-                for item in product:
-                    if item['IDProduct'] == update:
-                        selected_product = item
+                update_0501 = int(input("Masukan ID product yang akan di update: "))
+                selected_product_0501 = None
+                for item_0501 in product_0501:
+                    if item_0501['IDProduct'] == update_0501:
+                        selected_product_0501 = item_0501
                         break
                 
-                if not selected_product:
-                    print(f"Product dengan ID {update} tidak ditemukan!")
+                if not selected_product_0501:
+                    print(f"Product dengan ID {update_0501} tidak ditemukan!")
                     return
 
-                IDkategori = input(f"Masukan ID kategori baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['IDKategori']
-                nama = input(f"Masukan nama produk baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['nama_produk']
-                harga = input(f"Masukan harga baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['harga']
-                desk = input(f"Masukan deskripsi baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['deskripsi']
-                img = input(f"Masukan URL gambar baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['img']
-                q = input(f"Masukan quantity baru (atau kosongkan jika tidak ingin diubah): ") or selected_product['quantity']
+                IDkategori_0501 = input(f"Masukan ID kategori baru (atau kosongkan jika tidak ingin diubah): ") or selected_product_0501['IDKategori']
+                nama_0501 = input(f"Masukan nama produk baru (atau kosongkan jika tidak ingin diubah): ") or selected_product_0501['nama_produk']
+                harga_0501 = input(f"Masukan harga baru (atau kosongkan jika tidak ingin diubah): ") or selected_product_0501['harga']
+                desk_0501 = input(f"Masukan deskripsi baru (atau kosongkan jika tidak ingin diubah): ") or selected_product_0501['deskripsi']
+                img_0501 = input(f"Masukan URL gambar baru (atau kosongkan jika tidak ingin diubah): ") or selected_product_0501['img']
+                q_0501 = input(f"Masukan quantity baru (atau kosongkan jika tidak ingin diubah): ") or selected_product_0501['quantity']
                 
-                if harga:
-                    harga = int(harga)
-                if q:
-                    q = int(q)
+                if harga_0501:
+                    harga_0501 = int(harga_0501)
+                if q_0501:
+                    q_0501 = int(q_0501)
 
 
-                updateProduct(update, IDkategori, nama, harga, desk, img, q)
+                updateProduct(update_0501, IDkategori_0501, nama_0501, harga_0501, desk_0501, img_0501, q_0501)
             
             except Exception as err:
                 print(f"Silahkan input dengan benar: {err}")
             
-        elif pilih == 4 :
-            product = showAllProduct2()
-            for i, items in enumerate(product):
+        elif pilih_0501 == 4 :
+            product_0501 = showAllProduct2()
+            for i, items_0501 in enumerate(product_0501):
                 print(f"""
                 No. {i + 1}
-                ID Product    : {items['IDProduct']}
-                ID Kategori   : {items['IDKategori']}
-                Nama Product  : {items['nama_produk']}
-                Harga         : {items['harga']}
-                Deskripsi     : {items['deskripsi']}
-                Gambar        : {items['img']}
-                Quantity      : {items['quantity']}
+                ID Product    : {items_0501['IDProduct']}
+                ID Kategori   : {items_0501['IDKategori']}
+                Nama Product  : {items_0501['nama_produk']}
+                Harga         : {items_0501['harga']}
+                Deskripsi     : {items_0501['deskripsi']}
+                Gambar        : {items_0501['img']}
+                Quantity      : {items_0501['quantity']}
                 """)
             
-            delete = int(input("Masukan id produk yang mau di hapus: "))
+            delete_0501 = int(input("Masukan id produk yang mau di hapus: "))
 
-            deleteProduct(delete)
+            deleteProduct(delete_0501)
         
-        elif pilih == 5 :
+        elif pilih_0501 == 5 :
             searchProductMenu()
 
-        elif pilih == 6 :
+        elif pilih_0501 == 6 :
             break
-        elif pilih == 7 :
+        elif pilih_0501 == 7 :
             print("Terimakasih sudah menggunakan aplikasi ini")
             exit()
         else:
-            print(f"Menu pilihan {pilih} tidak tersedia.")
+            print(f"Menu pilihan {pilih_0501} tidak tersedia.")
 
 def searchTransaction():
     while True:
@@ -172,28 +190,28 @@ def searchTransaction():
               6. Exit
               """)
         
-        pilih = int(input("Masukan pilihan: "))
+        pilih_0501 = int(input("Masukan pilihan: "))
 
-        if pilih == 1:
+        if pilih_0501 == 1:
             search = int(input("Masukan ID transaction yang ingin di cari: "))
             searchTransactions("IDTransaksi", search)
             
-        elif pilih == 2:
+        elif pilih_0501 == 2:
             search = input("Masukan nama product transaksi yang ingin di cari: ")
             searchTransactions("Nama Product", search)
             
-        elif pilih == 3:
+        elif pilih_0501 == 3:
             search = int(input("Masukan jumlah transaksi yang ingin di cari: "))
             searchTransactions("Jumlah", search)
             
-        elif pilih == 4:
+        elif pilih_0501 == 4:
             search = int(input("Masukan total harga transaksi yang ingin di cari: "))
             searchTransactions("Total Harga", search)
 
-        elif pilih == 5:
+        elif pilih_0501 == 5:
             break
         
-        elif pilih == 6:
+        elif pilih_0501 == 6:
             print("Terimakasih sudah menggunakan aplikasi ini")
             exit()
             
@@ -210,32 +228,32 @@ def dataTransaction():
               4. Exit
               """)
         
-        pilih = int(input("Masukan pilihan: "))
+        pilih_0501 = int(input("Masukan pilihan: "))
 
-        if pilih == 1:
-            transaction = showTransaction()
+        if pilih_0501 == 1:
+            transaction_0501 = showTransaction()
             
-            for i, items in enumerate(transaction):
+            for i, items_0501 in enumerate(transaction_0501):
                 print(f"""
                 No. {i + 1}
-                ID Transaction: {items['IDTransaksi']}
-                Nama Product  : {items['Nama Product']}
-                Jumlah        : {items['Jumlah']}
-                Total Harga   : {items['Total Harga']}
-                ID Kategori   : {items['IDKategori']}
+                ID Transaction: {items_0501['IDTransaksi']}
+                Nama Product  : {items_0501['Nama Product']}
+                Jumlah        : {items_0501['Jumlah']}
+                Total Harga   : {items_0501['Total Harga']}
+                ID Kategori   : {items_0501['IDKategori']}
                 """)
         
-        elif pilih == 2 :
+        elif pilih_0501 == 2 :
             searchTransaction()
         
-        elif pilih == 3 :
+        elif pilih_0501 == 3 :
             break
         
-        elif pilih == 4 :
+        elif pilih_0501 == 4 :
             print("Terimakasih sudah menggunakan aplikasi ini")
             exit()
         else :
-            print(f"Menu pilihan {pilih} tidak tersedia")
+            print(f"Menu pilihan {pilih_0501} tidak tersedia")
 
 def kategoriMenu():
     while True:
@@ -250,71 +268,71 @@ def kategoriMenu():
               7. Exit
               """)
         
-        pilih = int(input("Masukan pilihan: "))
+        pilih_0501 = int(input("Masukan pilihan: "))
 
-        if pilih == 1:
-            kategori = showAllKategori()
+        if pilih_0501 == 1:
+            kategori_0501 = showAllKategori()
 
-            for i, items in enumerate(kategori):
+            for i, items_0501 in enumerate(kategori_0501):
                 print(f"""
                       No. {i + 1}
-                      ID Kategori   : {items['IDKategori']}
-                      Nama Kategori : {items['nama_kategori']}
+                      ID Kategori   : {items_0501['IDKategori']}
+                      Nama Kategori : {items_0501['nama_kategori']}
                       """)
         
-        elif pilih == 2:
-            val = input("Silahkan masukan nama kategori baru: ")
+        elif pilih_0501 == 2:
+            val_0501 = input("Silahkan masukan nama kategori baru: ")
 
-            if not val:
+            if not val_0501:
                 print("Harus di isi")
             else:
-                addKategori(val)
+                addKategori(val_0501)
         
-        elif pilih == 3:
+        elif pilih_0501 == 3:
             try:
-                kategori = showAllKategori()
+                kategori_0501 = showAllKategori()
 
-                for i, items in enumerate(kategori):
+                for i, items_0501 in enumerate(kategori_0501):
                     print(f"""
                       No. {i + 1}
-                      ID Kategori   : {items['IDKategori']}
-                      Nama Kategori : {items['nama_kategori']}
+                      ID Kategori   : {items_0501['IDKategori']}
+                      Nama Kategori : {items_0501['nama_kategori']}
                       """)
                     
-                idKategori = int(input("Masukan ID kategori yang ingin di edit: "))
+                idKategori_0501 = int(input("Masukan ID kategori yang ingin di edit: "))
 
-                selectedKategori = None
-                for item in kategori:
-                    if item['IDKategori'] == idKategori:
-                        selectedKategori = item
+                selectedKategori_0501 = None
+                for item_0501 in kategori_0501:
+                    if item_0501['IDKategori'] == idKategori_0501:
+                        selectedKategori_0501 = item_0501
                         break
                 
-                if not selectedKategori:
-                    print(f"Kategori dengan ID {idKategori} tidak ditemukan!")
+                if not selectedKategori_0501:
+                    print(f"Kategori dengan ID {idKategori_0501} tidak ditemukan!")
                     return
                 
-                newNama = input("Masukan nama kategori baru (atau kosongkan jika tidak ingin diubah): ") or selectedKategori['nama_kategori']
+                newNama_0501 = input("Masukan nama kategori baru (atau kosongkan jika tidak ingin diubah): ") or selectedKategori_0501['nama_kategori']
 
-                updateKategori(idKategori, newNama)
+                updateKategori(idKategori_0501, newNama_0501)
                 
             except Exception as err:
                 print(f"error: {err}")
         
-        elif pilih == 4:
-            kategori = showAllKategori()
+        elif pilih_0501 == 4:
+            kategori_0501 = showAllKategori()
 
-            for i, items in enumerate(kategori):
+            for i, items_0501 in enumerate(kategori_0501):
                 print(f"""
                       No. {i + 1}
-                      ID Kategori   : {items['IDKategori']}
-                      Nama Kategori : {items['nama_kategori']}
+                      ID Kategori   : {items_0501['IDKategori']}
+                      Nama Kategori : {items_0501['nama_kategori']}
                       """)
             
-            dell = int(input("Masukan id kategori yang ingin di hapus: "))
+            dell_0501 = int(input("Masukan id kategori yang ingin di hapus: "))
 
-            deleteKategori(dell)
+            deleteKategori(dell_0501)
         
-        elif pilih == 5:
+        elif pilih_0501 == 5:
             while True:
                 print("""
                       <<< Search Kategori >>>
@@ -324,37 +342,37 @@ def kategoriMenu():
                       4. Exit
                       """)
                 
-                pilih = int(input("Masukan pilihan: "))
+                pilih_0501 = int(input("Masukan pilihan: "))
 
-                if pilih == 1:
-                    val = int(input("Masukan ID Kategori yang ingin di cari: "))
+                if pilih_0501 == 1:
+                    val_0501 = int(input("Masukan ID Kategori yang ingin di cari: "))
 
-                    searchKategori(val, "IDKategori")
+                    searchKategori(val_0501, "IDKategori")
                 
-                elif pilih == 2:
-                    val = input("Masukan nama kategori yang ingin di cari: ")
+                elif pilih_0501 == 2:
+                    val_0501 = input("Masukan nama kategori yang ingin di cari: ")
 
-                    searchKategori(val, "nama_kategori")
+                    searchKategori(val_0501, "nama_kategori")
 
-                elif pilih == 3:
+                elif pilih_0501 == 3:
                     break
                 
-                elif pilih == 4:
+                elif pilih_0501 == 4:
                     print("Terimakasih sudah menggunakan aplikasi ini")
                     exit()
                     
                 else:
-                    print(f"Pilihan {pilih} tidak tersedia")
+                    print(f"Pilihan {pilih_0501} tidak tersedia")
         
-        elif pilih == 6:
+        elif pilih_0501 == 6:
             break
         
-        elif pilih == 7:
+        elif pilih_0501 == 7:
             print("terimakasih sudah menggunakan aplikasi ini")
             exit()
         
         else:
-            print(f"Menu pilihan {pilih} tidak tersedia")
+            print(f"Menu pilihan {pilih_0501} tidak tersedia")
 
 def statistikMenu():
     while True:
@@ -368,24 +386,24 @@ def statistikMenu():
             6. Exit
             """)
         
-        pilih = int(input("Masukan pilihan: "))
+        pilih_0501 = int(input("Masukan pilihan: "))
 
-        if pilih == 1:
+        if pilih_0501 == 1:
             pembelianKategori()
         
-        elif pilih == 2:
+        elif pilih_0501 == 2:
             plotKategoriTerjual()
         
-        elif pilih == 3:
+        elif pilih_0501 == 3:
             plotKetersediaanProduk()
         
-        elif pilih == 4:
+        elif pilih_0501 == 4:
             plotKeuntungan()
         
-        elif pilih == 5:
+        elif pilih_0501 == 5:
             break
         
-        elif pilih == 6:
+        elif pilih_0501 == 6:
             print("Terimakasih sudah menggunakan aplikasi ini")
             exit()
     
@@ -402,24 +420,24 @@ def main():
             6. Exit
             """)
         
-        pilih = int(input("Masukan pilihan: "))
+        pilih_0501 = int(input("Masukan pilihan: "))
 
-        if pilih == 1:
+        if pilih_0501 == 1:
             productMenu()
-        elif pilih == 2 :
+        elif pilih_0501 == 2 :
             dataTransaction()
-        elif pilih == 3 :
+        elif pilih_0501 == 3 :
             kategoriMenu()
-        elif pilih == 4 :
+        elif pilih_0501 == 4 :
             statistikMenu()
-        elif pilih == 5 :
-            app.mainloop()
+        elif pilih_0501 == 5 :
+            app_0501.mainloop()
             break
-        elif pilih == 6 :
+        elif pilih_0501 == 6 :
             print("Terimakasih sudah menggunakan aplikasi ini")
             exit()
         else:
-            print(f"Menu pilihan {pilih} tidak tersedia.")
+            print(f"Menu pilihan {pilih_0501} tidak tersedia.")
 
 if __name__ == "__main__":
     main()

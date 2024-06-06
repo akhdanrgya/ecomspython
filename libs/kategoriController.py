@@ -1,95 +1,95 @@
 import mysql.connector
 
-myDB = mysql.connector.connect(
+myDB_0501 = mysql.connector.connect(
     user = "root",
     password = "",
     database = "ecom",
     host = "localhost"
 )
 
-cursor = myDB.cursor()
+cursor_0501 = myDB_0501.cursor()
 
 def showAllKategori():
-    query ="SELECT * FROM kategori"
-    cursor = myDB.cursor(dictionary=True)
-    cursor.execute(query)
-    kategori = cursor.fetchall()
+    query_0501 ="SELECT * FROM kategori"
+    cursor_0501 = myDB_0501.cursor(dictionary=True)
+    cursor_0501.execute(query_0501)
+    kategori_0501 = cursor_0501.fetchall()
 
-    return kategori
+    return kategori_0501
 
 def showkategoriById(idk):
-    query = f"SELECT * FROM kategori WHERE IDKategori = {idk}"
-    cursor.execute(query)
-    kategori = cursor.fetchone()
+    query_0501 = f"SELECT * FROM kategori WHERE IDKategori = {idk}"
+    cursor_0501.execute(query_0501)
+    kategori_0501 = cursor_0501.fetchone()
 
-    return kategori
+    return kategori_0501
 
 def addKategori(namaKategori):
     try:
-        query ="""
+        query_0501 ="""
         INSERT INTO kategori (nama_kategori) VALUES
         (%s)
         """
         
-        values = (namaKategori,)
+        values_0501 = (namaKategori,)
         
-        cursor.execute(query, values)
-        myDB.commit()
+        cursor_0501.execute(query_0501, values_0501)
+        myDB_0501.commit()
         print(f"Data kategori {namaKategori} berhasil di tambahkan")
         
     except mysql.connector.Error as err:
         print(f"Error: {err}")
-        myDB.rollback()
+        myDB_0501.rollback()
         
 
 
 def deleteKategori(idk):
     try:
-        query = f"""
+        query_0501 = f"""
         DELETE FROM kategori
         WHERE IDKategori = {idk}
         """
         
-        cursor.execute(query)
-        myDB.commit()
+        cursor_0501.execute(query_0501)
+        myDB_0501.commit()
         print(f"Data kategori dengan id {idk} berhasil di hapus")
         
     except mysql.connector.Error as err:
         print(f"Error delete kategori: {err}")
-        myDB.rollback()
+        myDB_0501.rollback()
 
 
 def updateKategori(idK, nama):
     try:
-        query = """
+        query_0501 = """
         UPDATE kategori
         SET nama_kategori = %s
         WHERE IDKategori = %s
         """
-        value = (nama, idK)
+        value_0501 = (nama, idK)
         
-        cursor.execute(query, value)
-        myDB.commit()
+        cursor_0501.execute(query_0501, value_0501)
+        myDB_0501.commit()
         
         print(f"Data dengan id {idK} berhasil di update")
         
     except mysql.connector.Error as err:
         print(f"Error updating kategori where id {idK} err: {err}")
-        myDB.rollback()
+        myDB_0501.rollback()
 
 def searchKategori(val, key):
-    kategori = showAllKategori()
+    kategori_0501 = showAllKategori()
 
-    mathcingKategori = [items for items in kategori if items[key] == val]
+    mathcingKategori_0501 = [items for items in kategori_0501 if items[key] == val]
 
-    if mathcingKategori:
+    if mathcingKategori_0501:
         print("Kategori found:")
-        for items in mathcingKategori:
+        for items in mathcingKategori_0501:
             print(f"""
                   ID kategori   : {items['IDKategori']}
                   Nama Kategori : {items['nama_kategori']}
                   """)
-            return mathcingKategori
+            return mathcingKategori_0501
     else:
         print("Data yang dicari tidak ada")
         return None
