@@ -1,4 +1,6 @@
 import mysql.connector
+from tkinter import filedialog
+import os
 
 myDB = mysql.connector.connect(
     user = "root",

@@ -103,8 +103,6 @@ def productMenu():
                     """)
                 
                 update = int(input("Masukan ID product yang akan di update: "))
-
-
                 selected_product = None
                 for item in product:
                     if item['IDProduct'] == update:
