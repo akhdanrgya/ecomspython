@@ -12,10 +12,6 @@ Salwa Fadiyah           (102042300052)
 
 
 """
-
-
-
-
 from libs.kategoriController import *
 from libs.productController import *
 from libs.transactionController import *
