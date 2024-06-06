@@ -6,11 +6,11 @@ myDB_0501 = mysql.connector.connect(
     host = "localhost"
 )
 
-cursor_0501 = myDB_0501.cursor()\
+cursor_0501 = myDB_0501.cursor()
 
 def config():
     cursor_0501.execute("""
-                        CREATE DATABASE IF NOT EXISTS ecom;
+    CREATE DATABASE IF NOT EXISTS ecom;
     USE ecom;
 
     CREATE TABLE IF NOT EXISTS kategori(
