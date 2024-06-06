@@ -20,7 +20,7 @@ from libs.config import *
 from ecom import App
 
 app_0501 = App()
-config()
+runConfig()
 
 def searchProductMenu():
     while True:
