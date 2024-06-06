@@ -77,6 +77,9 @@ def showTransaction():
             }
             transaksiDict.append(val)
         
+        if not transaksiDict:
+            print("Tidak ada transaksi")
+        
         return transaksiDict
     
     except mysql.connector.Error as err:

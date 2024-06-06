@@ -31,9 +31,6 @@ class App(customtkinter.CTk):
         header_frame.pack(fill="x", padx=10, pady=10)
         header_frame.pack_propagate(False)
 
-        search_entry = customtkinter.CTkEntry(header_frame, font=("ArchivoBlack Regular", 40), bg_color="#FFFFFF", fg_color="#ffffff", placeholder_text="Search", placeholder_text_color="#808080")
-        search_entry.pack(side="left", padx=10, fill="x", expand=True)
-
         kategori_frame = customtkinter.CTkFrame(self.content, bg_color="#CFD7EB")
         kategori_frame.pack(fill="x", padx=10)
         kategori_frame.grid_columnconfigure((0, 1, 2, 3, 4), weight=1)
@@ -70,11 +67,11 @@ class App(customtkinter.CTk):
             product_frame = customtkinter.CTkFrame(parent, bg_color="#FFFFFF", corner_radius=10)
             product_frame.grid(row=row, column=col, padx=5, pady=5, sticky="nsew")
             
-            # Load and display image
             img = Image.open(imgP)
             img = img.resize((300, 300), Image.LANCZOS)
             img = ImageTk.PhotoImage(img)
-            img_label = customtkinter.CTkLabel(product_frame, image=img)
+            
+            img_label = customtkinter.CTkLabel(product_frame, image=img, text="")
             img_label.image = img
             img_label.pack(expand = True)
             
