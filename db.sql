@@ -1,27 +1,26 @@
-create database ecom;
-use ecom;
+CREATE DATABASE IF NOT EXISTS ecom;
+USE ecom;
 
-CREATE TABLE kategori(
-	IDKategori INT PRIMARY KEY auto_increment,
+CREATE TABLE IF NOT EXISTS kategori(
+    IDKategori INT PRIMARY KEY AUTO_INCREMENT,
     nama_kategori VARCHAR(20)
 );
 
-CREATE TABLE product(
-	IDProduct INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS product(
+    IDProduct INT PRIMARY KEY AUTO_INCREMENT,
     IDKategori INT,
     nama_produk VARCHAR(255),
-    harga int,
+    harga INT,
     deskripsi VARCHAR(255),
-	img VARCHAR(255),
+    img VARCHAR(255),
     quantity INT,
-    
-    FOREIGN KEY(IDKategori) REFERENCES kategori(IDKategori)
+    FOREIGN KEY (IDKategori) REFERENCES kategori(IDKategori)
 );
 
-CREATE TABLE transaksi(
-	IDTransaksi INT PRIMARY KEY auto_increment,
+CREATE TABLE IF NOT EXISTS transaksi(
+    IDTransaksi INT PRIMARY KEY AUTO_INCREMENT,
     IDProduct INT,
     jumlah INT,
     total_harga INT,
-    IDKategori INT
+    FOREIGN KEY (IDProduct) REFERENCES product(IDProduct)
 );

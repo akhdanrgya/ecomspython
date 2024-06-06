@@ -1,24 +1,26 @@
-"""
+# """
 
 
-KELAS               : SI 23 05
-KELOMPOK            : 01
-ANGGOTA KELOMPOK    :
+# KELAS               : SI 23 05
+# KELOMPOK            : 01
+# ANGGOTA KELOMPOK    :
 
-Akhdan Anargya Arisadi  (102042300077)
-Calista Queena Rumampuk (102042300073)
-Ismiati Andini          (102042300056)
-Salwa Fadiyah           (102042300052)
+# Akhdan Anargya Arisadi  (102042300077)
+# Calista Queena Rumampuk (102042300073)
+# Ismiati Andini          (102042300056)
+# Salwa Fadiyah           (102042300052)
 
 
-"""
+# """
 from libs.kategoriController import *
 from libs.productController import *
 from libs.transactionController import *
 from statistik import *
+from libs.config import *
 from ecom import App
 
 app_0501 = App()
+config()
 
 def searchProductMenu():
     while True:
