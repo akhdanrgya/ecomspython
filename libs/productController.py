@@ -1,6 +1,7 @@
 import mysql.connector
-from tkinter import filedialog
+from tkinter import filedialog, Tk
 import os
+import shutil
 
 myDB_0501 = mysql.connector.connect(
     user = "root",
@@ -93,9 +94,6 @@ def showAllProduct2():
         
         myDB_0501.commit()
         
-        if not product_dicts_0501:
-            print("Tidak ada product")
-        
         return product_dicts_0501
     
     except Exception as err:
@@ -183,4 +181,3 @@ def searchProduct2(val, key):
     else:
         print("No products found with the specified quantity.")
         return None
-

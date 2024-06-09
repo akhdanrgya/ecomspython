@@ -93,9 +93,9 @@ def plotKeuntungan():
 
     ax.bar(namaKategori_0501, total_keuntungan_0501, label=namaKategori_0501, color=bar_colors_0501)
 
-    ax.set_xlabel('Kategori')
     ax.set_ylabel('Keuntungan (Rp)')
     ax.set_title('Statistik Keuntungan Berbagai Kategori Produk')
     ax.legend(title='Kategori')
 
     plt.show()
+

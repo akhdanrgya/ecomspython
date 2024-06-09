@@ -43,7 +43,9 @@ def tableTransaksi(cursor_0501):
         IDProduct INT,
         jumlah INT,
         total_harga INT,
-        FOREIGN KEY (IDProduct) REFERENCES product(IDProduct)
+        idKategori INT,
+        FOREIGN KEY (IDProduct) REFERENCES product(IDProduct),
+        FOREIGN KEY (IDKategori) REFERENCES kategori(IDKategori)
     );
     """)
 
@@ -65,7 +67,9 @@ def config():
     cursor_0501.close()
     myDB_0501_use.close()
 
-
 def runConfig():
     db()
     config()
+
+if __name__ == "__main__":
+    runConfig()

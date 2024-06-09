@@ -12,15 +12,15 @@
 
 
 # """
+from libs.config import *
+runConfig()
 from libs.kategoriController import *
 from libs.productController import *
 from libs.transactionController import *
 from statistik import *
-from libs.config import *
 from ecom import App
-
 app_0501 = App()
-runConfig()
+
 
 def searchProductMenu():
     while True:
